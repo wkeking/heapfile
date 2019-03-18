@@ -10,6 +10,12 @@ import java.util.Objects;
 public class BooleanField implements Field<String>, Comparable<BooleanField> {
     private String value;
     private FieldType type;
+    private int defindLength;//字段定义长度
+    private int realLength;//字段真实长度
+
+    public BooleanField(FieldType type) {
+        this.type = type;
+    }
 
     @Override
     public void serialize(DataOutputStream dos) throws IOException {
@@ -25,7 +31,7 @@ public class BooleanField implements Field<String>, Comparable<BooleanField> {
 
     @Override
     public String parse(byte[] bytes) throws ParseException {
-        if (bytes.length != type.getLength ()) {
+        if (bytes.length != getDefindLength()) {
             throw new ParseException("Parse Error:BooleanBytesLength=" + bytes.length);
         }
         String s = new String (bytes);
@@ -56,6 +62,7 @@ public class BooleanField implements Field<String>, Comparable<BooleanField> {
     @Override
     public void setValue(String value) {
         this.value = value;
+        setRealLength (type.getLength (0));
     }
 
     @Override
@@ -80,5 +87,21 @@ public class BooleanField implements Field<String>, Comparable<BooleanField> {
     @Override
     public int hashCode() {
         return Objects.hash (value);
+    }
+
+    public int getDefindLength() {
+        return defindLength;
+    }
+
+    public void setDefindLength(int defindLength) {
+        this.defindLength = defindLength;
+    }
+
+    public int getRealLength() {
+        return realLength;
+    }
+
+    public void setRealLength(int realLength) {
+        this.realLength = realLength;
     }
 }

@@ -12,6 +12,8 @@ import java.util.Objects;
 public class DateField implements Field<Long>, Comparable<DateField> {
     private Long value;
     private FieldType type;
+    private int defindLength;//字段定义长度
+    private int realLength;//字段真实长度
 
     public DateField(FieldType type) {
         this.type = type;
@@ -21,7 +23,7 @@ public class DateField implements Field<Long>, Comparable<DateField> {
     public void serialize(DataOutputStream dos) throws IOException {
         if (value == null) {
             StringBuilder sb = new StringBuilder ();
-            for(int i = 0; i < type.getLength (); i ++) {
+            for(int i = 0; i < getDefindLength(); i ++) {
                 sb.append ("#");
             }
             dos.writeBytes (sb.toString ());
@@ -31,7 +33,7 @@ public class DateField implements Field<Long>, Comparable<DateField> {
 
     @Override
     public Long parse(byte[] bytes) throws ParseException {
-        if (bytes.length != type.getLength ()) {
+        if (bytes.length != getDefindLength()) {
             throw new ParseException("Parse Error:LongBytesLength=" + bytes.length);
         }
         if ("#".equals ((char) bytes[0])) return null;
@@ -58,6 +60,7 @@ public class DateField implements Field<Long>, Comparable<DateField> {
     @Override
     public void setValue(Long value) {
         this.value = value;
+        setRealLength (type.getLength (0));
     }
 
     @Override
@@ -83,5 +86,21 @@ public class DateField implements Field<Long>, Comparable<DateField> {
     @Override
     public int hashCode() {
         return Objects.hash (value);
+    }
+
+    public int getDefindLength() {
+        return defindLength;
+    }
+
+    public void setDefindLength(int defindLength) {
+        this.defindLength = defindLength;
+    }
+
+    public int getRealLength() {
+        return realLength;
+    }
+
+    public void setRealLength(int realLength) {
+        this.realLength = realLength;
     }
 }

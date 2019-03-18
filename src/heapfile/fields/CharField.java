@@ -12,6 +12,7 @@ public class CharField implements Field<String>, Comparable<CharField> {
     private String value;
     private FieldType type;
     private int defindLength;//字段定义长度
+    private int realLength;//字段真实长度
 
     public CharField(FieldType type) {
         this.type = type;
@@ -63,6 +64,7 @@ public class CharField implements Field<String>, Comparable<CharField> {
     @Override
     public void setValue(String value) {
         this.value = value;
+        setRealLength (type.getLength (0));
     }
 
     @Override
@@ -95,5 +97,13 @@ public class CharField implements Field<String>, Comparable<CharField> {
 
     public int getDefindLength() {
         return defindLength;
+    }
+
+    public int getRealLength() {
+        return realLength;
+    }
+
+    public void setRealLength(int realLength) {
+        this.realLength = realLength;
     }
 }

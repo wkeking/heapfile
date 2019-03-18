@@ -12,6 +12,7 @@ public class VarcharField implements Field<String>, Comparable<VarcharField> {
     private String value;
     private FieldType type;
     private int defindLength;//字段定义长度
+    private int realLength;//字段真实长度
 
     public VarcharField(FieldType type) {
         this.type = type;
@@ -49,6 +50,7 @@ public class VarcharField implements Field<String>, Comparable<VarcharField> {
     @Override
     public void setValue(String value) {
         this.value = value;
+        setRealLength (type.getLength (value.length ()));
     }
 
     @Override
@@ -81,5 +83,13 @@ public class VarcharField implements Field<String>, Comparable<VarcharField> {
 
     public void setDefindLength(int defindLength) {
         this.defindLength = defindLength;
+    }
+
+    public int getRealLength() {
+        return realLength;
+    }
+
+    public void setRealLength(int realLength) {
+        this.realLength = realLength;
     }
 }
