@@ -1,24 +1,21 @@
 package heapfile.fields;
 
-import heapfile.config.DefaultConfig;
 import heapfile.enums.FieldType;
 import heapfile.exception.ParseException;
-import heapfile.utils.DateUtil;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Objects;
 
-public class DateField implements Field<Long>, Comparable<DateField> {
+public class LongField implements Field<Long>, Comparable<LongField> {
     private Long value;
     private FieldType type;
     private int defindLength;//字段定义长度
     private int realLength;//字段真实长度
 
-    public DateField(FieldType type) {
+    public LongField(FieldType type) {
         this.type = type;
     }
 
@@ -40,14 +37,14 @@ public class DateField implements Field<Long>, Comparable<DateField> {
             throw new ParseException("Parse Error:LongBytesLength=" + bytes.length);
         }
         if ("#".equals ((char) bytes[0])) return null;
-        return (0xff00000000000000L 	& ((long)bytes[0] << 56)) |
-                (0x00ff000000000000L 	& ((long)bytes[1] << 48)) |
-                (0x0000ff0000000000L 	& ((long)bytes[2] << 40)) |
-                (0x000000ff00000000L 	& ((long)bytes[3] << 32)) |
-                (0x00000000ff000000L 	& ((long)bytes[4] << 24)) |
-                (0x0000000000ff0000L 	& ((long)bytes[5] << 16)) |
-                (0x000000000000ff00L 	& ((long)bytes[6] << 8)) |
-                (0x00000000000000ffL 	&  (long)bytes[7]);
+        return (0xff00000000000000L & ((long)bytes[0] << 56)) |
+                (0x00ff000000000000L & ((long)bytes[1] << 48)) |
+                (0x0000ff0000000000L & ((long)bytes[2] << 40)) |
+                (0x000000ff00000000L & ((long)bytes[3] << 32)) |
+                (0x00000000ff000000L & ((long)bytes[4] << 24)) |
+                (0x0000000000ff0000L & ((long)bytes[5] << 16)) |
+                (0x000000000000ff00L & ((long)bytes[6] << 8)) |
+                (0x00000000000000ffL & (long)bytes[7]);
     }
 
     @Override
@@ -69,11 +66,11 @@ public class DateField implements Field<Long>, Comparable<DateField> {
     @Override
     public String toString() {
         if (value == null) return "";
-        return DateUtil.longToStr (value);
+        return value.toString ();
     }
 
     @Override
-    public int compareTo(DateField o) {
+    public int compareTo(LongField o) {
         return this.value.compareTo (o.getValue ());
     }
 
@@ -81,7 +78,7 @@ public class DateField implements Field<Long>, Comparable<DateField> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass () != o.getClass ()) return false;
-        DateField dateField = (DateField) o;
+        LongField dateField = (LongField) o;
         return Objects.equals (value, dateField.value);
     }
 

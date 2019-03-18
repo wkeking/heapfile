@@ -21,6 +21,15 @@ public class FieldFactory {
                 intField.setValue ((Integer) value);
                 intField.setDefindLength (defindLength);
                 return intField;
+            case FT.LONG:
+                LongField longField = (LongField) container.get (type);
+                if (longField == null){
+                    longField = new LongField (FieldType.LONG);
+                    container.put (type, longField);
+                }
+                longField.setValue ((Long) value);
+                longField.setDefindLength (defindLength);
+                return longField;
             case FT.CHAR:
                 CharField charField = (CharField) container.get (type);
                 if (charField == null){

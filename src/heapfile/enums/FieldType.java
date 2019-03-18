@@ -7,6 +7,10 @@ public enum FieldType implements Serializable {
         public int getLength(int i) {
             return 4;
         }
+    },LONG() {
+        public int getLength(int i) {
+            return 8;
+        }
     },BOOLEAN() {
         public int getLength(int i) {
             return 1;
