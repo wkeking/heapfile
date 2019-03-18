@@ -4,26 +4,26 @@ import java.io.Serializable;
 
 public enum FieldType implements Serializable {
     INT() {
-        public int getLength(int n) {
+        public int getLength() {
             return 4;
         }
-    },FLOAT() {
-        public int getLength(int n) {
-            return 8;
+    },BOOLEAN() {
+        public int getLength() {
+            return 1;
         }
     },CHAR() {
-        public int getLength(int n) {
-            return n;
+        public int getLength() {
+            return 0;
         }
     },VARCHAR() {
-        public int getLength(int n) {
-            return n + 4;
+        public int getLength() {
+            return 0;
         }
     },DATE() {
-        public int getLength(int n) {
+        public int getLength() {
             return 8;
         }
     };
 
-    public abstract int getLength(int n);
+    public abstract int getLength();
 }

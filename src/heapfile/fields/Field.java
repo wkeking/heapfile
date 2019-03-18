@@ -17,6 +17,9 @@ public interface Field<T> extends Serializable {
     //获取字段类型
     FieldType getType();
 
-    //获取字段长度
-    int getLength();
+    //获取字段值
+    T getValue();
+
+    //设置字段值
+    void setValue(T value);
 }
