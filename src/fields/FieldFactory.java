@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FieldFactory {
-    private static final Map<String, Field> container = new HashMap();
+    private static final Map<String, Field> container = new HashMap<>();
 
     public static Field getField(String type, String value, int defindLength) throws ParseException {
         switch (type) {

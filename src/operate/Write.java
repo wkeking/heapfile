@@ -33,7 +33,7 @@ public class Write {
              BufferedOutputStream bos = new BufferedOutputStream (fos);
              DataOutputStream dos = new DataOutputStream (bos)) {
             String[] fields = lnr.readLine ().split (DefaultConfig.SEPARATOR);
-            DefaultConfig.initTableInfo (fields);//初始化表文件结构
+            DefaultConfig.initTableInfo (fields);
             while ((realSize + DefaultConfig.RECORDLENGTH) <= pageSize) {
                 String[] record = lnr.readLine ().split (DefaultConfig.SEPARATOR);
                 write (dos, record);

@@ -3,31 +3,40 @@ package fields;
 import java.io.Serializable;
 
 public enum FieldType implements Serializable {
-    INT () {
+    INT ("int") {
         public int getLength(int i) {
             return 4;
         }
-    }, LONG () {
+    }, LONG ("long") {
         public int getLength(int i) {
             return 8;
         }
-    }, BOOLEAN () {
+    }, BOOLEAN ("boolean") {
         public int getLength(int i) {
             return 1;
         }
-    }, CHAR () {
+    }, CHAR ("char") {
         public int getLength(int i) {
             return i;
         }
-    }, VARCHAR () {
+    }, VARCHAR ("varchar") {
         public int getLength(int i) {
             return i + 4;
         }
-    }, DATE () {
+    }, DATE ("date") {
         public int getLength(int i) {
             return 8;
         }
     };
+
+    private String code;
+    FieldType(String code) {
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
+    }
 
     public abstract int getLength(int i);
 }
