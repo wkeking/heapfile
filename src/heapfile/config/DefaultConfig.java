@@ -25,7 +25,7 @@ public class DefaultConfig {
     public static final String HEAPFILE = "heapfile";//写入文件相对路径
     public static int RECORDLENGTH = 0;//每条记录长度
 
-    public static final Map<String, String> defindTable = new HashMap<> ();
+    public static final Map<String, String> defindTable = new LinkedHashMap<> ();
     public static final List<Map<String, Object>> tableInfo = new ArrayList<> ();
 
     static {//定义字段类型
@@ -45,15 +45,23 @@ public class DefaultConfig {
     }
     
     public static void initTableInfo(String... fields) {
-        Stream.of (fields).forEach (f -> {
-            String attr = defindTable.get (f);
-            String type = TypeUtil.getType (attr);
-            int length = TypeUtil.getTypeLen (attr);
-            HashMap<String, Object> map = new HashMap<> ();
-            map.put (DefaultConfig.TYPE, type);
-            map.put (DefaultConfig.LENGTH, length);
-            tableInfo.add (map);
-            DefaultConfig.RECORDLENGTH = DefaultConfig.RECORDLENGTH + length;
-        });
+        if (fields == null) {
+            DefaultConfig.defindTable.forEach ((k, v) -> DefaultConfig.initTable (v));
+        } else {
+            Stream.of (fields).forEach (f -> {
+                String attr = defindTable.get (f);
+                initTableInfo(attr);
+            });
+        }
+    }
+
+    private static void initTable(String attr) {
+        String type = TypeUtil.getType (attr);
+        int length = TypeUtil.getTypeLen (attr);
+        HashMap<String, Object> map = new HashMap<> ();
+        map.put (DefaultConfig.TYPE, type);
+        map.put (DefaultConfig.LENGTH, length);
+        tableInfo.add (map);
+        DefaultConfig.RECORDLENGTH = DefaultConfig.RECORDLENGTH + length;
     }
 }
