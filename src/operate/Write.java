@@ -14,12 +14,14 @@ public class Write {
     private int recordNum;
     private String dataFilePath;
     private int realSize;
+    private long dataSize;
 
     public Write(int pageSize, String dataFilePath) {
         this.pageSize = pageSize;
         this.dataFilePath = dataFilePath;
         recordNum = 0;
         realSize = FieldType.INT.getLength (0);
+        dataSize = 0L;
     }
 
     public void write() {
@@ -37,6 +39,7 @@ public class Write {
             while ((realSize + DefaultConfig.RECORDLENGTH) <= pageSize) {
                 String[] record = lnr.readLine ().split (DefaultConfig.SEPARATOR);
                 write (dos, record);
+                dataSize ++;
             }
             int space = pageSize - realSize;
             StringBuilder sb = new StringBuilder ();
@@ -46,8 +49,9 @@ public class Write {
             dos.writeBytes (sb.toString ());
             dos.writeInt (recordNum);
             dos.flush ();
+            while (lnr.readLine() != null) dataSize ++;
             long stop = System.currentTimeMillis ();
-            System.out.println ("Records Number=" + recordNum);
+            System.out.println ("Records Number=" + dataSize);
             System.out.println ("Page Number=1");
             System.out.println ("Time:" + (stop - start) + "ms");
         } catch (Exception e) {
