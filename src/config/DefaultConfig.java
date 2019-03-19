@@ -20,10 +20,10 @@ public class DefaultConfig {
     public static final String BRACKET_B = "(";
     public static final String BRACKET_A = ")";
     public static final String SEPARATOR = ",";
+    public static final String POINT = ".";
     public static final String UTF8 = "utf-8";
 
     public static final String PAGENAME = "heap";
-    public static final String HEAPFILE = "heapfile";
     public static int RECORDLENGTH = 0;
 
     public static final Map<String, String> defindTable = new LinkedHashMap<> ();

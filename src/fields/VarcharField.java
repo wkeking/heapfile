@@ -32,7 +32,8 @@ public class VarcharField implements Field<String>, Comparable<VarcharField> {
         if (bytes.length > getDefindLength ()) {
             throw new ParseException ("Parse Error:VarcharBytesLength=" + bytes.length);
         }
-        return new String (bytes);
+        value = new String (bytes);
+        return value;
     }
 
     @Override

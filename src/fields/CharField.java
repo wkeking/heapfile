@@ -44,7 +44,7 @@ public class CharField implements Field<String>, Comparable<CharField> {
         }
         String s = new String (bytes);
         int i = s.indexOf ("#");
-        if (i == 0) value = null;
+        if (i == -1) value = null;
         else value = s.substring (0, i);
         return value;
     }

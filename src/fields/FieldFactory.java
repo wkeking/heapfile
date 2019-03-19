@@ -18,7 +18,7 @@ public class FieldFactory {
                     intField = new IntField (FieldType.INT);
                     container.put (type, intField);
                 }
-                intField.setValue (Integer.parseInt (value));
+                if (value != null) intField.setValue (Integer.parseInt (value));
                 intField.setDefindLength (defindLength);
                 return intField;
             case DefaultConfig.LONG:
@@ -27,7 +27,7 @@ public class FieldFactory {
                     longField = new LongField (FieldType.LONG);
                     container.put (type, longField);
                 }
-                longField.setValue (Long.parseLong (value));
+                if (value != null)longField.setValue (Long.parseLong (value));
                 longField.setDefindLength (defindLength);
                 return longField;
             case DefaultConfig.CHAR:
@@ -36,7 +36,7 @@ public class FieldFactory {
                     charField = new CharField (FieldType.CHAR);
                     container.put (type, charField);
                 }
-                charField.setValue (value);
+                if (value != null) charField.setValue (value);
                 charField.setDefindLength (defindLength);
                 return charField;
             case DefaultConfig.VARCHAR:
@@ -45,7 +45,7 @@ public class FieldFactory {
                     varcharField = new VarcharField (FieldType.VARCHAR);
                     container.put (type, varcharField);
                 }
-                varcharField.setValue (value);
+                if (value != null) varcharField.setValue (value);
                 varcharField.setDefindLength (defindLength);
                 return varcharField;
             case DefaultConfig.DATE:
@@ -54,7 +54,7 @@ public class FieldFactory {
                     dateField = new DateField (FieldType.DATE);
                     container.put (type, dateField);
                 }
-                dateField.setValue (DateUtil.strToLong (value));
+                if (value != null) dateField.setValue (DateUtil.strToLong (value));
                 dateField.setDefindLength (defindLength);
                 return dateField;
             case DefaultConfig.BOOLEAN:
@@ -63,7 +63,7 @@ public class FieldFactory {
                     booleanField = new BooleanField (FieldType.BOOLEAN);
                     container.put (type, booleanField);
                 }
-                booleanField.setValue (value);
+                if (value != null) booleanField.setValue (value);
                 booleanField.setDefindLength (defindLength);
                 return booleanField;
             default:
