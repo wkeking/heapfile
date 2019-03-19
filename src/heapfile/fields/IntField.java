@@ -21,18 +21,17 @@ public class IntField implements Field<Integer>, Comparable<IntField> {
     public void serialize(DataOutputStream dos) throws IOException {
         if (value == null) {
             StringBuilder sb = new StringBuilder ();
-            for(int i = 0; i < getDefindLength (); i ++) {
+            for (int i = 0; i < getDefindLength (); i++) {
                 sb.append ("#");
             }
             dos.writeBytes (sb.toString ());
-        }
-        else dos.writeInt (value);
+        } else dos.writeInt (value);
     }
 
     @Override
     public Integer parse(byte[] bytes) throws ParseException {
         if (bytes.length != getDefindLength ()) {
-            throw new ParseException("Parse Error:IntBytesLength=" + bytes.length);
+            throw new ParseException ("Parse Error:IntBytesLength=" + bytes.length);
         }
         if ("#".equals ((char) bytes[0])) value = null;
         value = bytes[3] & 0xFF |
@@ -67,19 +66,6 @@ public class IntField implements Field<Integer>, Comparable<IntField> {
     @Override
     public int compareTo(IntField o) {
         return this.value.compareTo (o.getValue ());
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass () != o.getClass ()) return false;
-        IntField intField = (IntField) o;
-        return Objects.equals (value, intField.value);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash (value);
     }
 
     public void setDefindLength(int defindLength) {

@@ -22,16 +22,16 @@ public class CharField implements Field<String>, Comparable<CharField> {
     public void serialize(DataOutputStream dos) throws IOException, LengthException {
         if (value == null) {
             StringBuilder sb = new StringBuilder ();
-            for (int i = 0; i < getDefindLength(); i ++) {
+            for (int i = 0; i < getDefindLength (); i++) {
                 sb.append ("#");
             }
             dos.writeBytes (sb.toString ());
         } else {
-            if (value.length () > getDefindLength())
-                throw new LengthException ("Length Overrun:" + value.length () + ">" + getDefindLength());
-            StringBuilder sb = new StringBuilder(value);
-            if (value.length () < getDefindLength()) {
-                for (int i = 0; i < (getDefindLength() - value.length ()); i ++) {
+            if (value.length () > getDefindLength ())
+                throw new LengthException ("Length Overrun:" + value.length () + ">" + getDefindLength ());
+            StringBuilder sb = new StringBuilder (value);
+            if (value.length () < getDefindLength ()) {
+                for (int i = 0; i < (getDefindLength () - value.length ()); i++) {
                     sb.append ("#");
                 }
             }
@@ -41,8 +41,8 @@ public class CharField implements Field<String>, Comparable<CharField> {
 
     @Override
     public String parse(byte[] bytes) throws ParseException {
-        if (bytes.length != getDefindLength()) {
-            throw new ParseException("Parse Error:CharBytesLength=" + bytes.length);
+        if (bytes.length != getDefindLength ()) {
+            throw new ParseException ("Parse Error:CharBytesLength=" + bytes.length);
         }
         String s = new String (bytes);
         int i = s.indexOf ("#");
@@ -76,19 +76,6 @@ public class CharField implements Field<String>, Comparable<CharField> {
     @Override
     public int compareTo(CharField o) {
         return this.value.compareTo (o.getValue ());
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass () != o.getClass ()) return false;
-        CharField charField = (CharField) o;
-        return Objects.equals (value, charField.value);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash (value);
     }
 
     public void setDefindLength(int defindLength) {

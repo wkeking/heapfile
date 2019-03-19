@@ -31,8 +31,8 @@ public class BooleanField implements Field<String>, Comparable<BooleanField> {
 
     @Override
     public String parse(byte[] bytes) throws ParseException {
-        if (bytes.length != getDefindLength()) {
-            throw new ParseException("Parse Error:BooleanBytesLength=" + bytes.length);
+        if (bytes.length != getDefindLength ()) {
+            throw new ParseException ("Parse Error:BooleanBytesLength=" + bytes.length);
         }
         String s = new String (bytes);
         switch (s) {
@@ -74,19 +74,6 @@ public class BooleanField implements Field<String>, Comparable<BooleanField> {
     @Override
     public int compareTo(BooleanField o) {
         return this.getValue ().compareTo (o.getValue ());
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass () != o.getClass ()) return false;
-        BooleanField that = (BooleanField) o;
-        return Objects.equals (value, that.value);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash (value);
     }
 
     public int getDefindLength() {

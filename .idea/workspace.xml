@@ -2,15 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02aadcf1-0362-4ef7-a2b3-287daa7d5cf3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/heapfile/config/DefaultConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/heapfile/fields/LongField.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/heapfile/utils/DateUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/heapfile/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heapfile/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heapfile/config/FT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heapfile/config/FT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/heapfile/enums/FieldType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heapfile/enums/FieldType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/heapfile/factory/FieldFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heapfile/factory/FieldFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heapfile/factory/FieldFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heapfile/fields/FieldFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heapfile/fields/BooleanField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heapfile/fields/BooleanField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heapfile/fields/CharField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heapfile/fields/CharField.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/heapfile/fields/DateField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heapfile/fields/DateField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heapfile/fields/IntField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heapfile/fields/IntField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heapfile/fields/LongField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heapfile/fields/LongField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heapfile/fields/VarcharField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heapfile/fields/VarcharField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/heapfile/utils/DateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/heapfile/utils/DateUtil.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,13 +22,28 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/heapfile/Main.java">
+    <leaf>
+      <file leaf-file-name="DateField.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/heapfile/fields/DateField.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="96" />
+            <state relative-caret-position="-1044">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Field.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/heapfile/fields/Field.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="621">
+              <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -37,85 +54,8 @@
       <file leaf-file-name="IntField.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/heapfile/fields/IntField.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FieldType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/heapfile/enums/FieldType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FieldFactory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/heapfile/factory/FieldFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
-              <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FT.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/heapfile/config/FT.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DefaultConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/heapfile/config/DefaultConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="3" column="69" selection-start-line="3" selection-start-column="69" selection-end-line="3" selection-end-column="69" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BooleanField.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/heapfile/fields/BooleanField.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2403#2404#0" expanded="true" />
-                <element signature="e#2451#2452#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DateField.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/heapfile/fields/DateField.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="71" column="42" selection-start-line="71" selection-start-column="42" selection-end-line="71" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DateUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/heapfile/utils/DateUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
+            <state relative-caret-position="411">
+              <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -126,8 +66,62 @@
       <file leaf-file-name="LongField.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/heapfile/fields/LongField.java">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="411">
+              <caret line="74" column="5" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VarcharField.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/heapfile/fields/VarcharField.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/heapfile/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+              <caret line="10" column="31" lean-forward="true" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DateUtil.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/heapfile/utils/DateUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="243">
+              <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseLocale.class" pinned="false" current-in-tab="false">
+        <entry file="jar://D:/JDK/JDK8/jdk180/jre/lib/rt.jar!/sun/util/locale/BaseLocale.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DefaultConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/heapfile/config/DefaultConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="81">
+              <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -156,18 +150,19 @@
         <option value="$PROJECT_DIR$/src/heapfile/fields/FloatField.java" />
         <option value="$PROJECT_DIR$/src/heapfile/exception/LengthException.java" />
         <option value="$PROJECT_DIR$/src/heapfile/fields/Field.java" />
-        <option value="$PROJECT_DIR$/src/heapfile/fields/IntField.java" />
-        <option value="$PROJECT_DIR$/src/heapfile/fields/CharField.java" />
-        <option value="$PROJECT_DIR$/src/heapfile/fields/VarcharField.java" />
-        <option value="$PROJECT_DIR$/src/heapfile/fields/BooleanField.java" />
-        <option value="$PROJECT_DIR$/src/heapfile/fields/LongField.java" />
-        <option value="$PROJECT_DIR$/src/heapfile/enums/FieldType.java" />
         <option value="$PROJECT_DIR$/src/heapfile/config/FT.java" />
         <option value="$PROJECT_DIR$/src/heapfile/factory/FieldFactory.java" />
-        <option value="$PROJECT_DIR$/src/heapfile/Main.java" />
         <option value="$PROJECT_DIR$/src/heapfile/config/DefaultConfig.java" />
-        <option value="$PROJECT_DIR$/src/heapfile/utils/DateUtil.java" />
+        <option value="$PROJECT_DIR$/src/heapfile/enums/FieldType.java" />
+        <option value="$PROJECT_DIR$/src/heapfile/fields/FieldFactory.java" />
         <option value="$PROJECT_DIR$/src/heapfile/fields/DateField.java" />
+        <option value="$PROJECT_DIR$/src/heapfile/fields/BooleanField.java" />
+        <option value="$PROJECT_DIR$/src/heapfile/fields/CharField.java" />
+        <option value="$PROJECT_DIR$/src/heapfile/fields/IntField.java" />
+        <option value="$PROJECT_DIR$/src/heapfile/fields/LongField.java" />
+        <option value="$PROJECT_DIR$/src/heapfile/fields/VarcharField.java" />
+        <option value="$PROJECT_DIR$/src/heapfile/Main.java" />
+        <option value="$PROJECT_DIR$/src/heapfile/utils/DateUtil.java" />
       </list>
     </option>
   </component>
@@ -192,7 +187,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -211,40 +208,17 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="heapfile" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="heapfile" type="b2602c69:ProjectViewProjectNode" />
-              <item name="heapfile" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="heapfile" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="heapfile" type="b2602c69:ProjectViewProjectNode" />
-              <item name="heapfile" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="heapfile" type="462c0819:PsiDirectoryNode" />
-              <item name="fields" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="heapfile" type="b2602c69:ProjectViewProjectNode" />
-              <item name="heapfile" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="heapfile" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="create.test.in.the.same.root" value="true" />
-    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -303,7 +277,8 @@
       <updated>1552875473741</updated>
       <workItem from="1552875475490" duration="8436000" />
       <workItem from="1552888958444" duration="18876000" />
-      <workItem from="1552912016875" duration="289000" />
+      <workItem from="1552912016875" duration="3384000" />
+      <workItem from="1552960088005" duration="2039000" />
     </task>
     <task id="LOCAL-00001" summary="定义字段类型">
       <created>1552901079435</created>
@@ -319,11 +294,18 @@
       <option name="project" value="LOCAL" />
       <updated>1552904461452</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="增加字段类型">
+      <created>1552912325035</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1552912325035</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27601000" />
+    <option name="totallyTimeSpent" value="32735000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
@@ -331,6 +313,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32922733" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
@@ -338,11 +321,11 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32922733" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.0" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16791044" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16950959" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -356,7 +339,6 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32922733" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32922733" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,7 +350,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="定义字段类型" />
     <MESSAGE value="字段类型工厂定义" />
-    <option name="LAST_COMMIT_MESSAGE" value="字段类型工厂定义" />
+    <MESSAGE value="增加字段类型" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加字段类型" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/heapfile/Main.java">
@@ -398,7 +381,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/heapfile/factory/FieldFactory.java">
+    <entry file="file://$PROJECT_DIR$/src/heapfile/fields/FieldFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="702">
           <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
@@ -542,66 +525,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/heapfile/fields/CharField.java">
+    <entry file="file://$PROJECT_DIR$/src/heapfile/enums/FieldType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="66" column="43" lean-forward="true" selection-start-line="66" selection-start-column="43" selection-end-line="66" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#333#334#0" expanded="true" />
-            <element signature="e#364#365#0" expanded="true" />
-            <element signature="e#491#492#0" expanded="true" />
-            <element signature="e#518#519#0" expanded="true" />
-            <element signature="e#635#636#0" expanded="true" />
-            <element signature="e#662#663#0" expanded="true" />
-            <element signature="e#783#784#0" expanded="true" />
-            <element signature="e#807#808#0" expanded="true" />
-            <element signature="e#1316#1317#0" expanded="true" />
-            <element signature="e#1359#1360#0" expanded="true" />
-            <element signature="e#2007#2008#0" expanded="true" />
-            <element signature="e#2055#2056#0" expanded="true" />
-            <element signature="e#2493#2494#0" expanded="true" />
-            <element signature="e#2528#2529#0" expanded="true" />
-            <element signature="e#2767#2768#0" expanded="true" />
-            <element signature="e#2800#2801#0" expanded="true" />
-            <element signature="e#2849#2850#0" expanded="true" />
-            <element signature="e#2893#2894#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="189">
+          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/heapfile/fields/VarcharField.java">
+    <entry file="file://$PROJECT_DIR$/src/heapfile/config/FT.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="88" column="26" lean-forward="true" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
+        <state relative-caret-position="135">
+          <caret line="5" column="45" lean-forward="true" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heapfile/fields/FieldFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#380#381#0" expanded="true" />
-            <element signature="e#411#412#0" expanded="true" />
-            <element signature="e#918#919#0" expanded="true" />
-            <element signature="e#950#951#0" expanded="true" />
-            <element signature="e#996#997#0" expanded="true" />
-            <element signature="e#1024#1025#0" expanded="true" />
-            <element signature="e#1172#1173#0" expanded="true" />
-            <element signature="e#1231#1232#0" expanded="true" />
-            <element signature="e#1535#1536#0" expanded="true" />
-            <element signature="e#1578#1579#0" expanded="true" />
-            <element signature="e#1614#1615#0" expanded="true" />
-            <element signature="e#1649#1650#0" expanded="true" />
-            <element signature="e#1702#1703#0" expanded="true" />
-            <element signature="e#1750#1751#0" expanded="true" />
-            <element signature="e#2238#2239#0" expanded="true" />
-            <element signature="e#2271#2272#0" expanded="true" />
-            <element signature="e#2320#2321#0" expanded="true" />
-            <element signature="e#2364#2365#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/heapfile/fields/BooleanField.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+        <state relative-caret-position="600">
+          <caret line="76" column="5" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2403#2404#0" expanded="true" />
@@ -610,78 +561,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/heapfile/enums/FieldType.java">
+    <entry file="file://$PROJECT_DIR$/src/heapfile/fields/CharField.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/heapfile/fields/LongField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/heapfile/config/DefaultConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" column="69" selection-start-line="3" selection-start-column="69" selection-end-line="3" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/heapfile/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="96" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/heapfile/factory/FieldFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/heapfile/utils/DateUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/heapfile/fields/DateField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1755">
-          <caret line="71" column="42" lean-forward="true" selection-start-line="71" selection-start-column="42" selection-end-line="71" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/heapfile/config/FT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/heapfile/fields/IntField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+        <state relative-caret-position="411">
+          <caret line="78" column="5" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -690,8 +573,86 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/heapfile/fields/Field.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="621">
+          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heapfile/fields/IntField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heapfile/fields/LongField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="74" column="5" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heapfile/fields/VarcharField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heapfile/config/DefaultConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heapfile/fields/DateField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1044">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heapfile/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" column="31" lean-forward="true" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/JDK/JDK8/jdk180/jre/lib/rt.jar!/sun/util/locale/BaseLocale.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/JDK/JDK8/jdk180/src.zip!/java/util/Locale.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="686">
+          <caret line="710" column="5" lean-forward="true" selection-start-line="710" selection-start-column="5" selection-end-line="710" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/heapfile/utils/DateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

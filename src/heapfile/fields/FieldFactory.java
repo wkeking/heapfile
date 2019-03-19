@@ -1,8 +1,7 @@
-package heapfile.factory;
+package heapfile.fields;
 
 import heapfile.config.FT;
 import heapfile.enums.FieldType;
-import heapfile.fields.*;
 
 import java.util.HashMap;
 import java.util.Map;

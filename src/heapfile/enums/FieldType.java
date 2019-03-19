@@ -3,27 +3,27 @@ package heapfile.enums;
 import java.io.Serializable;
 
 public enum FieldType implements Serializable {
-    INT() {
+    INT () {
         public int getLength(int i) {
             return 4;
         }
-    },LONG() {
+    }, LONG () {
         public int getLength(int i) {
             return 8;
         }
-    },BOOLEAN() {
+    }, BOOLEAN () {
         public int getLength(int i) {
             return 1;
         }
-    },CHAR() {
+    }, CHAR () {
         public int getLength(int i) {
             return i;
         }
-    },VARCHAR() {
+    }, VARCHAR () {
         public int getLength(int i) {
             return i + 4;
         }
-    },DATE() {
+    }, DATE () {
         public int getLength(int i) {
             return 8;
         }

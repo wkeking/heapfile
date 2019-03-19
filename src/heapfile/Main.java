@@ -1,20 +1,16 @@
 package heapfile;
 
-import heapfile.config.FT;
-import heapfile.enums.FieldType;
-import heapfile.factory.FieldFactory;
-import heapfile.fields.Field;
+import heapfile.utils.DateUtil;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.text.ParseException;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Date date = new Date ();
-        SimpleDateFormat format = new SimpleDateFormat ("dd/MM/yyyy KK:mm:ss aa", Locale.ENGLISH);
-        String format1 = format.format (date);
-        System.out.println(format1);
+    public static void main(String[] args) throws ParseException {
+        String s = "08/11/2017 07:12:02 PM";
+        long l = DateUtil.strToLong (s);
+        System.out.println(l);
+        String s1 = DateUtil.longToStr (l);
+        System.out.println(s1);
     }
 }
