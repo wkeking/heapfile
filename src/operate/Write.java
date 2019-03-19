@@ -1,32 +1,32 @@
-package heapfile.operate;
+package operate;
 
-import heapfile.config.DefaultConfig;
-import heapfile.fields.Field;
-import heapfile.fields.FieldFactory;
-import heapfile.fields.FieldType;
+import config.DefaultConfig;
+import fields.Field;
+import fields.FieldFactory;
+import fields.FieldType;
 
 import java.io.*;
 import java.text.ParseException;
 import java.util.Map;
 
-public class Load {
+public class Write {
     private int pageSize;
     private int recordNum;
     private String dataFilePath;
     private int realSize;
 
-    public Load(int pageSize, String dataFilePath) {
+    public Write(int pageSize, String dataFilePath) {
         this.pageSize = pageSize;
         this.dataFilePath = dataFilePath;
         recordNum = 0;
         realSize = FieldType.INT.getLength (0);
     }
 
-    public void load() {
+    public void write() {
         long start = System.currentTimeMillis ();
         String heapPath = DefaultConfig.PAGENAME + "." + pageSize;
         File file = new File (heapPath);
-        try (InputStream in = ClassLoader.getSystemResourceAsStream (dataFilePath);
+        try (InputStream in = new FileInputStream (dataFilePath);
              InputStreamReader isr = new InputStreamReader (in, DefaultConfig.UTF8);
              LineNumberReader lnr = new LineNumberReader (isr);
              FileOutputStream fos = new FileOutputStream (file);

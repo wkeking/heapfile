@@ -1,7 +1,7 @@
-package heapfile.fields;
+package fields;
 
-import heapfile.config.DefaultConfig;
-import heapfile.utils.DateUtil;
+import config.DefaultConfig;
+import utils.DateUtil;
 
 import java.text.ParseException;
 import java.util.HashMap;
@@ -66,7 +66,8 @@ public class FieldFactory {
                 booleanField.setValue (value);
                 booleanField.setDefindLength (defindLength);
                 return booleanField;
+            default:
+                return null;
         }
-        return null;
     }
 }

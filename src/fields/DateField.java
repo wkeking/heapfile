@@ -1,17 +1,18 @@
-package heapfile.fields;
+package fields;
 
-import heapfile.exception.ParseException;
+import exception.ParseException;
+import utils.DateUtil;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class LongField implements Field<Long>, Comparable<LongField> {
+public class DateField implements Field<Long>, Comparable<DateField> {
     private Long value;
     private FieldType type;
-    private int defindLength;//字段定义长度
-    private int realLength;//字段真实长度
+    private int defindLength;
+    private int realLength;
 
-    public LongField(FieldType type) {
+    public DateField(FieldType type) {
         this.type = type;
     }
 
@@ -62,11 +63,11 @@ public class LongField implements Field<Long>, Comparable<LongField> {
     @Override
     public String toString() {
         if (value == null) return "";
-        return value.toString ();
+        return DateUtil.longToStr (value);
     }
 
     @Override
-    public int compareTo(LongField o) {
+    public int compareTo(DateField o) {
         return this.value.compareTo (o.getValue ());
     }
 

@@ -1,6 +1,6 @@
-package heapfile.fields;
+package fields;
 
-import heapfile.exception.ParseException;
+import exception.ParseException;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -8,8 +8,8 @@ import java.io.IOException;
 public class IntField implements Field<Integer>, Comparable<IntField> {
     private Integer value;
     private FieldType type;
-    private int defindLength;//字段定义长度
-    private int realLength;//字段真实长度
+    private int defindLength;
+    private int realLength;
 
     public IntField(FieldType type) {
         this.type = type;

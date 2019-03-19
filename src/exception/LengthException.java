@@ -1,4 +1,4 @@
-package heapfile.exception;
+package exception;
 
 public class LengthException extends RuntimeException {
     public LengthException(String message) {

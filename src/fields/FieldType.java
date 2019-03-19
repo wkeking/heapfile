@@ -1,4 +1,4 @@
-package heapfile.fields;
+package fields;
 
 import java.io.Serializable;
 

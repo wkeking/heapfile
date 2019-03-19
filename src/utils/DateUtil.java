@@ -1,6 +1,6 @@
-package heapfile.utils;
+package utils;
 
-import heapfile.config.DefaultConfig;
+import config.DefaultConfig;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

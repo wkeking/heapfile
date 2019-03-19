@@ -1,6 +1,6 @@
-package heapfile.fields;
+package fields;
 
-import heapfile.exception.ParseException;
+import exception.ParseException;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -8,8 +8,8 @@ import java.io.IOException;
 public class BooleanField implements Field<String>, Comparable<BooleanField> {
     private String value;
     private FieldType type;
-    private int defindLength;//字段定义长度
-    private int realLength;//字段真实长度
+    private int defindLength;
+    private int realLength;
 
     public BooleanField(FieldType type) {
         this.type = type;

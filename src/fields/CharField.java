@@ -1,7 +1,7 @@
-package heapfile.fields;
+package fields;
 
-import heapfile.exception.LengthException;
-import heapfile.exception.ParseException;
+import exception.LengthException;
+import exception.ParseException;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -9,8 +9,8 @@ import java.io.IOException;
 public class CharField implements Field<String>, Comparable<CharField> {
     private String value;
     private FieldType type;
-    private int defindLength;//字段定义长度
-    private int realLength;//字段真实长度
+    private int defindLength;
+    private int realLength;
 
     public CharField(FieldType type) {
         this.type = type;

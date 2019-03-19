@@ -1,6 +1,6 @@
-package heapfile.utils;
+package utils;
 
-import heapfile.config.DefaultConfig;
+import config.DefaultConfig;
 
 public class TypeUtil {
     public static int getTypeLen(String type) {
