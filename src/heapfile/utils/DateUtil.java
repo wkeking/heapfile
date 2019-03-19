@@ -17,8 +17,7 @@ public class DateUtil {
 
     public static String longToStr(long l) {
         SimpleDateFormat sdf = new SimpleDateFormat (DefaultConfig.DATEFORMAT, Locale.ENGLISH);
-        Date date = new Date (l);
-        String str = sdf.format (date);
+        String str = sdf.format (l);
         return str;
     }
 }

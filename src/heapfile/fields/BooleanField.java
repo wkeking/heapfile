@@ -1,11 +1,9 @@
 package heapfile.fields;
 
-import heapfile.enums.FieldType;
 import heapfile.exception.ParseException;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.Objects;
 
 public class BooleanField implements Field<String>, Comparable<BooleanField> {
     private String value;

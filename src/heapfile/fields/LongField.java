@@ -1,13 +1,9 @@
 package heapfile.fields;
 
-import heapfile.enums.FieldType;
 import heapfile.exception.ParseException;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Objects;
 
 public class LongField implements Field<Long>, Comparable<LongField> {
     private Long value;

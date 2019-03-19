@@ -1,6 +1,5 @@
 package heapfile.fields;
 
-import heapfile.enums.FieldType;
 import heapfile.exception.LengthException;
 import heapfile.exception.ParseException;
 

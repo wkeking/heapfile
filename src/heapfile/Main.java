@@ -1,16 +1,12 @@
 package heapfile;
 
-import heapfile.utils.DateUtil;
-
-import java.text.ParseException;
+import heapfile.operate.Load;
 
 public class Main {
 
-    public static void main(String[] args) throws ParseException {
-        String s = "08/11/2017 07:12:02 PM";
-        long l = DateUtil.strToLong (s);
-        System.out.println(l);
-        String s1 = DateUtil.longToStr (l);
-        System.out.println(s1);
+    public static void main(String[] args) {
+        String s = "heapfile\\test.csv";
+        Load load = new Load (4096, s);
+        load.load ();
     }
 }

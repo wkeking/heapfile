@@ -1,68 +1,69 @@
 package heapfile.fields;
 
-import heapfile.config.FT;
-import heapfile.enums.FieldType;
+import heapfile.config.DefaultConfig;
+import heapfile.utils.DateUtil;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class FieldFactory {
     private static final Map<String, Field> container = new HashMap();
 
-    public static Field getField(String type, Object value, int defindLength) {
+    public static Field getField(String type, String value, int defindLength) throws ParseException {
         switch (type) {
-            case FT.INT:
+            case DefaultConfig.INT:
                 IntField intField = (IntField) container.get (type);
                 if (intField == null){
                     intField = new IntField (FieldType.INT);
                     container.put (type, intField);
                 }
-                intField.setValue ((Integer) value);
+                intField.setValue (Integer.parseInt (value));
                 intField.setDefindLength (defindLength);
                 return intField;
-            case FT.LONG:
+            case DefaultConfig.LONG:
                 LongField longField = (LongField) container.get (type);
                 if (longField == null){
                     longField = new LongField (FieldType.LONG);
                     container.put (type, longField);
                 }
-                longField.setValue ((Long) value);
+                longField.setValue (Long.parseLong (value));
                 longField.setDefindLength (defindLength);
                 return longField;
-            case FT.CHAR:
+            case DefaultConfig.CHAR:
                 CharField charField = (CharField) container.get (type);
                 if (charField == null){
                     charField = new CharField (FieldType.CHAR);
                     container.put (type, charField);
                 }
-                charField.setValue ((String) value);
+                charField.setValue (value);
                 charField.setDefindLength (defindLength);
                 return charField;
-            case FT.VARCHAR:
+            case DefaultConfig.VARCHAR:
                 VarcharField varcharField = (VarcharField) container.get (type);
                 if (varcharField == null){
                     varcharField = new VarcharField (FieldType.VARCHAR);
                     container.put (type, varcharField);
                 }
-                varcharField.setValue ((String) value);
+                varcharField.setValue (value);
                 varcharField.setDefindLength (defindLength);
                 return varcharField;
-            case FT.DATE:
+            case DefaultConfig.DATE:
                 DateField dateField = (DateField) container.get (type);
                 if (dateField == null){
                     dateField = new DateField (FieldType.DATE);
                     container.put (type, dateField);
                 }
-                dateField.setValue ((Long) value);
+                dateField.setValue (DateUtil.strToLong (value));
                 dateField.setDefindLength (defindLength);
                 return dateField;
-            case FT.BOOLEAN:
+            case DefaultConfig.BOOLEAN:
                 BooleanField booleanField = (BooleanField) container.get (type);
                 if (booleanField == null){
                     booleanField = new BooleanField (FieldType.BOOLEAN);
                     container.put (type, booleanField);
                 }
-                booleanField.setValue ((String) value);
+                booleanField.setValue (value);
                 booleanField.setDefindLength (defindLength);
                 return booleanField;
         }

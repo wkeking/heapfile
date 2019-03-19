@@ -1,12 +1,10 @@
 package heapfile.fields;
 
-import heapfile.enums.FieldType;
 import heapfile.exception.LengthException;
 import heapfile.exception.ParseException;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.Objects;
 
 public class CharField implements Field<String>, Comparable<CharField> {
     private String value;
