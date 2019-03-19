@@ -46,14 +46,14 @@ public class DefaultConfig {
     }
 
     public static void initTableInfo(String... fields) {
-        if (fields == null) {
-            DefaultConfig.defindTable.forEach ((k, v) -> DefaultConfig.initTable (k, v));
-        } else {
-            Stream.of (fields).forEach (f -> {
-                String attr = defindTable.get (f);
-                initTable(f, attr);
-            });
-        }
+        Stream.of (fields).forEach (f -> {
+            String attr = defindTable.get (f);
+            initTable(f, attr);
+        });
+    }
+
+    public static void initTableInfo() {
+        DefaultConfig.defindTable.forEach ((k, v) -> DefaultConfig.initTable (k, v));
     }
 
     private static void initTable(String fieldName, String attr) {

@@ -14,7 +14,7 @@ import java.util.Map;
 public class Load {
 
     public void read(String path) {
-        DefaultConfig.initTableInfo(null);
+        DefaultConfig.initTableInfo();
         int index = path.indexOf(DefaultConfig.POINT);
         String substring = path.substring(index + 1);
         int pageSize = Integer.parseInt(substring);
