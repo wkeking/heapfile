@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 public class DefaultConfig {
+    public static final String NAME = "name";
     public static final String TYPE = "type";
     public static final String LENGTH = "length";
     public static final String INT = "int";
@@ -43,22 +44,27 @@ public class DefaultConfig {
         defindTable.put ("Side Of Street", DefaultConfig.INT + "(4)");
         defindTable.put ("In Violation", DefaultConfig.BOOLEAN + "(1)");
     }
-    
+
+    /**
+     * 初始化表结构，写入检索必须调用
+     * @param fields 检索初始化传null
+     */
     public static void initTableInfo(String... fields) {
         if (fields == null) {
-            DefaultConfig.defindTable.forEach ((k, v) -> DefaultConfig.initTable (v));
+            DefaultConfig.defindTable.forEach ((k, v) -> DefaultConfig.initTable (k, v));
         } else {
             Stream.of (fields).forEach (f -> {
                 String attr = defindTable.get (f);
-                initTableInfo(attr);
+                initTableInfo(f, attr);
             });
         }
     }
 
-    private static void initTable(String attr) {
+    private static void initTable(String fieldName, String attr) {
         String type = TypeUtil.getType (attr);
         int length = TypeUtil.getTypeLen (attr);
         HashMap<String, Object> map = new HashMap<> ();
+        map.put (DefaultConfig.NAME, fieldName);
         map.put (DefaultConfig.TYPE, type);
         map.put (DefaultConfig.LENGTH, length);
         tableInfo.add (map);

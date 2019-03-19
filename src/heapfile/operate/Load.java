@@ -3,6 +3,7 @@ package heapfile.operate;
 import heapfile.config.DefaultConfig;
 import heapfile.fields.Field;
 import heapfile.fields.FieldFactory;
+import heapfile.fields.FieldType;
 
 import java.io.*;
 import java.text.ParseException;
@@ -18,7 +19,7 @@ public class Load {
         this.pageSize = pageSize;
         this.dataFilePath = dataFilePath;
         recordNum = 0;
-        realSize = 4;
+        realSize = FieldType.INT.getLength (0);
     }
 
     public void load() {
@@ -50,7 +51,7 @@ public class Load {
             System.out.println ("Page Number=1");
             System.out.println ("Time:" + (stop - start) + "ms");
         } catch (Exception e) {
-            System.out.println (e);
+            e.printStackTrace ();
         }
     }
 
