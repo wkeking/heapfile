@@ -1,9 +1,9 @@
 package operate;
 
 import config.TableConfig;
-import fields.Field;
-import fields.FieldFactory;
-import fields.FieldType;
+import element.fields.Field;
+import element.fields.FieldFactory;
+import element.fields.FieldType;
 
 import java.io.*;
 import java.util.Map;

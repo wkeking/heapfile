@@ -1,8 +1,8 @@
 package utils;
 
 import config.TableConfig;
-import fields.Field;
-import fields.FieldFactory;
+import element.fields.Field;
+import element.fields.FieldFactory;
 
 import java.text.ParseException;
 import java.util.Arrays;

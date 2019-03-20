@@ -21,10 +21,11 @@ public class TableConfig {
     public static final String BRACKET_A = ")";
     public static final String SEPARATOR = ",";
     public static final String POINT = ".";
-    public static final int BUFFERSIZE = 1024 * 1024;
+    public static final int BUFFERSIZE = 1024 * 1024 * 5;
 
     public static final String PAGENAME = "heap";
     public static int RECORDLENGTH = 0;
+    public static String KEYWORDS;
 
     public static final Map<String, String> defindTable = new LinkedHashMap<> ();
     public static final List<Map<String, Object>> tableInfo = new ArrayList<> ();
