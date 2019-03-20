@@ -21,10 +21,9 @@ public class Load {
     public Load(int pageSize) throws IOException {
         TableConfig.initTableInfo();
         this.pageSize = pageSize;
-        this.dataFilePath = TableConfig.PAGENAME + TableConfig.POINT + String.valueOf (pageSize);
+        this.dataFilePath = TableConfig.PAGENAME + TableConfig.POINT + String.valueOf(pageSize);
         raf = new RandomAccessFile(dataFilePath, "r");
-        pageNum = (int) raf.length () / pageSize;
-        System.out.println(pageNum);
+        pageNum = (int) raf.length() / pageSize;
         pagePoint = 0;
     }
 
@@ -33,14 +32,14 @@ public class Load {
     }
 
     public Page next() throws IOException {
-        Page page = nextPage ();
-        pagePoint ++;
+        Page page = nextPage();
+        pagePoint++;
         return page;
     }
 
     public void close() throws IOException {
         if (raf != null) {
-            raf.close ();
+            raf.close();
         }
     }
 
@@ -54,19 +53,19 @@ public class Load {
                 (numBytes[2] & 0xFF) << 8 |
                 (numBytes[1] & 0xFF) << 16 |
                 (numBytes[0] & 0xFF) << 24;
-        return new Page (pagePoint + 1, recordNum);
+        return new Page(pagePoint + 1, recordNum);
     }
 
     public void query(Page page) throws IOException, ParseException {
         byte[] recordByte = new byte[TableConfig.RECORDLENGTH];
-        raf.seek ((long) (page.getPageId () - 1) * pageSize);
-        for (int i = 0; i < page.getRecordNum (); i++) {
+        raf.seek((long) (page.getPageId() - 1) * pageSize);
+        for (int i = 0; i < page.getRecordNum(); i++) {
             raf.read(recordByte);
             String[] records = RecordUtil.parseRecord(recordByte);
-            Record record = new Record (records, page.getPageId (), i + 1);
-            String result = record.getFields ()[0] + record.getFields ()[1];
-            if (TableConfig.KEYWORDS.equals (result))
-                page.getList ().add (record);
+            Record record = new Record(records, page.getPageId(), i + 1);
+            String result = record.getFields()[0] + record.getFields()[1];
+            if (TableConfig.KEYWORDS.equals(result))
+                page.getList().add(record);
         }
     }
 }
