@@ -14,8 +14,21 @@ public class dbquery {
             return;
         }
         TableConfig.KEYWORDS = args[0].trim ();
+        if (TableConfig.KEYWORDS == null || TableConfig.KEYWORDS.isEmpty ()) {
+            System.out.println("Keywords is required");
+            return;
+        }
         String size = args[1].trim ();
-        int pageSize = Integer.parseInt (size);
+        if (size == null || size.isEmpty ()) {
+            System.out.println("PageSize is required");
+            return;
+        }
+        int pageSize = 0;
+        try {
+            pageSize = Integer.parseInt (size);
+        } catch (Exception e) {
+            System.out.println("The size of page need int type");
+        }
         Load load = null;
         try {
             long start = System.currentTimeMillis ();

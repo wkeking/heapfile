@@ -20,7 +20,6 @@ public class Write {
     }
 
     public void write() {
-        long start = System.currentTimeMillis ();
         String heapPath = TableConfig.PAGENAME + "." + pageSize;
         File file = new File (heapPath);
         try (FileReader fr = new FileReader (dataFilePath);
@@ -58,10 +57,8 @@ public class Write {
                 realSize += TableConfig.RECORDLENGTH;
                 recordsNum ++;
             }
-            long stop = System.currentTimeMillis ();
             System.out.println ("The number of records loaded is " + recordsNum);
             System.out.println ("The number of pages saved is " + pageNum);
-            System.out.println ("The number of milliseconds to create the heap file is " + (stop - start) + "ms");
         } catch (Exception e) {
             e.printStackTrace ();
         }

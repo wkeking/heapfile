@@ -7,17 +7,26 @@ public class dbload {
             System.out.println("The parameter must have three");
             return;
         }
-        String pageSizeStr = null;
-        String dataFile = null;
-        for (int i = 0; i < args.length; i ++) {
-            if ("-p".equals (args[i])) {
-                pageSizeStr = args[i+1].trim ();
-                dataFile = args[i+2].trim ();
-                break;
-            }
+        String pageSizeStr = args[1].trim ();
+        if (pageSizeStr == null || pageSizeStr.isEmpty ()) {
+            System.out.println("PageSize is required");
+            return;
         }
-        int pageSize = Integer.parseInt (pageSizeStr);
+        String dataFile = args[2].trim ();
+        if (dataFile == null || dataFile.isEmpty ()) {
+            System.out.println("DataFile is required");
+            return;
+        }
+        int pageSize = 0;
+        try {
+            pageSize = Integer.parseInt (pageSizeStr);
+        } catch (Exception e) {
+            System.out.println("The size of page need int type");
+        }
         Write write = new Write (pageSize, dataFile);
+        long start = System.currentTimeMillis ();
         write.write ();
+        long stop = System.currentTimeMillis ();
+        System.out.println ("The number of milliseconds to create the heap file is " + (stop - start) + "ms");
     }
 }
