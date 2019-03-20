@@ -74,10 +74,6 @@ public class IntField implements Field<Integer>, Comparable<IntField> {
         return defindLength;
     }
 
-    public int getRealLength() {
-        return realLength;
-    }
-
     public void setRealLength(int realLength) {
         this.realLength = realLength;
     }

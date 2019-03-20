@@ -82,10 +82,6 @@ public class BooleanField implements Field<String>, Comparable<BooleanField> {
         this.defindLength = defindLength;
     }
 
-    public int getRealLength() {
-        return realLength;
-    }
-
     public void setRealLength(int realLength) {
         this.realLength = realLength;
     }

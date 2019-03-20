@@ -84,10 +84,6 @@ public class CharField implements Field<String>, Comparable<CharField> {
         return defindLength;
     }
 
-    public int getRealLength() {
-        return realLength;
-    }
-
     public void setRealLength(int realLength) {
         this.realLength = realLength;
     }

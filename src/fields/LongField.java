@@ -79,10 +79,6 @@ public class LongField implements Field<Long>, Comparable<LongField> {
         this.defindLength = defindLength;
     }
 
-    public int getRealLength() {
-        return realLength;
-    }
-
     public void setRealLength(int realLength) {
         this.realLength = realLength;
     }

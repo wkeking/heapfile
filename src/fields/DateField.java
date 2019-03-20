@@ -80,10 +80,6 @@ public class DateField implements Field<Long>, Comparable<DateField> {
         this.defindLength = defindLength;
     }
 
-    public int getRealLength() {
-        return realLength;
-    }
-
     public void setRealLength(int realLength) {
         this.realLength = realLength;
     }

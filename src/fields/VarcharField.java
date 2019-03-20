@@ -71,10 +71,6 @@ public class VarcharField implements Field<String>, Comparable<VarcharField> {
         this.defindLength = defindLength;
     }
 
-    public int getRealLength() {
-        return realLength;
-    }
-
     public void setRealLength(int realLength) {
         this.realLength = realLength;
     }
