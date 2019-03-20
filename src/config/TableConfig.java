@@ -5,7 +5,7 @@ import utils.TypeUtil;
 import java.util.*;
 import java.util.stream.Stream;
 
-public class DefaultConfig {
+public class TableConfig {
     public static final String NAME = "name";
     public static final String TYPE = "type";
     public static final String LENGTH = "length";
@@ -21,7 +21,7 @@ public class DefaultConfig {
     public static final String BRACKET_A = ")";
     public static final String SEPARATOR = ",";
     public static final String POINT = ".";
-    public static final String UTF8 = "utf-8";
+    public static final int BUFFERSIZE = 1024 * 1024;
 
     public static final String PAGENAME = "heap";
     public static int RECORDLENGTH = 0;
@@ -30,19 +30,19 @@ public class DefaultConfig {
     public static final List<Map<String, Object>> tableInfo = new ArrayList<> ();
 
     static {
-        defindTable.put ("DeviceId", DefaultConfig.INT + "(4)");
-        defindTable.put ("ArrivalTime", DefaultConfig.DATE + "(8)");
-        defindTable.put ("DepartureTime", DefaultConfig.DATE + "(8)");
-        defindTable.put ("DurationSeconds", DefaultConfig.LONG + "(8)");
-        defindTable.put ("StreetMarker", DefaultConfig.CHAR + "(6)");
-        defindTable.put ("Sign", DefaultConfig.CHAR + "(40)");
-        defindTable.put ("Area", DefaultConfig.CHAR + "(20)");
-        defindTable.put ("StreetId", DefaultConfig.INT + "(4)");
-        defindTable.put ("StreetName", DefaultConfig.CHAR + "(30)");
-        defindTable.put ("BetweenStreet1", DefaultConfig.CHAR + "(30)");
-        defindTable.put ("BetweenStreet2", DefaultConfig.CHAR + "(30)");
-        defindTable.put ("Side Of Street", DefaultConfig.INT + "(4)");
-        defindTable.put ("In Violation", DefaultConfig.BOOLEAN + "(1)");
+        defindTable.put ("DeviceId", TableConfig.INT + "(4)");
+        defindTable.put ("ArrivalTime", TableConfig.DATE + "(8)");
+        defindTable.put ("DepartureTime", TableConfig.DATE + "(8)");
+        defindTable.put ("DurationSeconds", TableConfig.LONG + "(8)");
+        defindTable.put ("StreetMarker", TableConfig.CHAR + "(6)");
+        defindTable.put ("Sign", TableConfig.CHAR + "(40)");
+        defindTable.put ("Area", TableConfig.CHAR + "(20)");
+        defindTable.put ("StreetId", TableConfig.INT + "(4)");
+        defindTable.put ("StreetName", TableConfig.CHAR + "(30)");
+        defindTable.put ("BetweenStreet1", TableConfig.CHAR + "(30)");
+        defindTable.put ("BetweenStreet2", TableConfig.CHAR + "(30)");
+        defindTable.put ("Side Of Street", TableConfig.INT + "(4)");
+        defindTable.put ("In Violation", TableConfig.BOOLEAN + "(1)");
     }
 
     public static void initTableInfo(String... fields) {
@@ -53,17 +53,17 @@ public class DefaultConfig {
     }
 
     public static void initTableInfo() {
-        DefaultConfig.defindTable.forEach ((k, v) -> DefaultConfig.initTable (k, v));
+        TableConfig.defindTable.forEach ((k, v) -> TableConfig.initTable (k, v));
     }
 
     private static void initTable(String fieldName, String attr) {
         String type = TypeUtil.getType (attr);
         int length = TypeUtil.getTypeLen (attr);
         HashMap<String, Object> map = new HashMap<> ();
-        map.put (DefaultConfig.NAME, fieldName);
-        map.put (DefaultConfig.TYPE, type);
-        map.put (DefaultConfig.LENGTH, length);
+        map.put (TableConfig.NAME, fieldName);
+        map.put (TableConfig.TYPE, type);
+        map.put (TableConfig.LENGTH, length);
         tableInfo.add (map);
-        DefaultConfig.RECORDLENGTH = DefaultConfig.RECORDLENGTH + length;
+        TableConfig.RECORDLENGTH = TableConfig.RECORDLENGTH + length;
     }
 }

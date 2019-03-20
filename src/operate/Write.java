@@ -1,6 +1,6 @@
 package operate;
 
-import config.DefaultConfig;
+import config.TableConfig;
 import fields.Field;
 import fields.FieldFactory;
 import fields.FieldType;
@@ -11,56 +11,55 @@ import java.util.Map;
 public class Write {
     private int pageSize;
     private String dataFilePath;
-    private long dataSize;
+    private long recordsNum;
 
     public Write(int pageSize, String dataFilePath) {
         this.pageSize = pageSize;
         this.dataFilePath = dataFilePath;
-        dataSize = 0L;
+        recordsNum = 0L;
     }
 
     public void write() {
         long start = System.currentTimeMillis ();
-        String heapPath = DefaultConfig.PAGENAME + "." + pageSize;
+        String heapPath = TableConfig.PAGENAME + "." + pageSize;
         File file = new File (heapPath);
-        try (InputStream in = new FileInputStream (dataFilePath);
-             InputStreamReader isr = new InputStreamReader (in, DefaultConfig.UTF8);
-             LineNumberReader lnr = new LineNumberReader (isr);
+        try (FileReader fr = new FileReader (dataFilePath);
+             BufferedReader lnr = new BufferedReader(fr, TableConfig.BUFFERSIZE);
              FileOutputStream fos = new FileOutputStream (file);
-             BufferedOutputStream bos = new BufferedOutputStream (fos, pageSize);
+             BufferedOutputStream bos = new BufferedOutputStream (fos, pageSize * 2);
              DataOutputStream dos = new DataOutputStream (bos)) {
-            String[] fields = lnr.readLine ().split (DefaultConfig.SEPARATOR);
-            DefaultConfig.initTableInfo (fields);
+            String[] fields = lnr.readLine ().split (TableConfig.SEPARATOR);
+            TableConfig.initTableInfo (fields);
             int pageNum = 0;
             int realSize = FieldType.INT.getLength (0);
-            int recordNum = 0;
+            int pRecordNum = 0;
             String record;
             while ((record = lnr.readLine ()) != null) {
-                if ((realSize + DefaultConfig.RECORDLENGTH) > pageSize) {
+                if ((realSize + TableConfig.RECORDLENGTH) > pageSize) {
                     int space = pageSize - realSize;
                     StringBuilder sb = new StringBuilder ();
                     for (int i = 0; i < space; i++) {
                         sb.append (" ");
                     }
                     dos.writeBytes (sb.toString ());
-                    dos.writeInt (recordNum);
+                    dos.writeInt (pRecordNum);
                     dos.flush ();
                     pageNum ++;
                     realSize = FieldType.INT.getLength (0);
-                    recordNum = 0;
+                    pRecordNum = 0;
                 }
-                String[] rs = record.split (DefaultConfig.SEPARATOR);
+                String[] rs = record.split (TableConfig.SEPARATOR);
                 for (int i = 0; i < rs.length; i++) {
-                    Map<String, Object> fieldInfo = DefaultConfig.tableInfo.get (i);
-                    Field field = FieldFactory.getField ((String) fieldInfo.get (DefaultConfig.TYPE), rs[i], (Integer) fieldInfo.get (DefaultConfig.LENGTH));
+                    Map<String, Object> fieldInfo = TableConfig.tableInfo.get (i);
+                    Field field = FieldFactory.getField ((String) fieldInfo.get (TableConfig.TYPE), rs[i], (Integer) fieldInfo.get (TableConfig.LENGTH));
                     field.serialize (dos);
                 }
-                recordNum ++;
-                realSize += DefaultConfig.RECORDLENGTH;
-                dataSize ++;
+                pRecordNum ++;
+                realSize += TableConfig.RECORDLENGTH;
+                recordsNum ++;
             }
             long stop = System.currentTimeMillis ();
-            System.out.println ("The number of records loaded is " + dataSize);
+            System.out.println ("The number of records loaded is " + recordsNum);
             System.out.println ("The number of pages saved is " + pageNum);
             System.out.println ("The number of milliseconds to create the heap file is " + (stop - start) + "ms");
         } catch (Exception e) {

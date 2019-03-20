@@ -1,19 +1,23 @@
 package operate;
 
-import config.DefaultConfig;
+import config.TableConfig;
 import fields.FieldType;
 import utils.RecordUtil;
 
 import java.io.RandomAccessFile;
 
 public class Load {
+    private int pageSize;
+    private String dataFilePath;
 
-    public void read(String path) {
-        DefaultConfig.initTableInfo();
-        int index = path.indexOf(DefaultConfig.POINT);
-        String substring = path.substring(index + 1);
-        int pageSize = Integer.parseInt(substring);
-        try (RandomAccessFile raf = new RandomAccessFile(path, "r")) {
+    public Load(int pageSize) {
+        this.pageSize = pageSize;
+        this.dataFilePath = TableConfig.PAGENAME + TableConfig.POINT + String.valueOf (pageSize);
+    }
+
+    public void read() {
+        TableConfig.initTableInfo();
+        try (RandomAccessFile raf = new RandomAccessFile(dataFilePath, "r")) {
             long numIndex = pageSize - FieldType.INT.getLength(0);
             raf.seek(numIndex);
             byte[] numBytes = new byte[4];
@@ -23,7 +27,7 @@ public class Load {
                     (numBytes[1] & 0xFF) << 16 |
                     (numBytes[0] & 0xFF) << 24;
             raf.seek(0L);
-            byte[] record = new byte[DefaultConfig.RECORDLENGTH];
+            byte[] record = new byte[TableConfig.RECORDLENGTH];
             for (int i = 0; i < num; i++) {
                 raf.read(record);
                 String[] records = RecordUtil.parseRecord(record);
