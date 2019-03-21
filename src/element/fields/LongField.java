@@ -1,10 +1,14 @@
 package element.fields;
 
 import exception.ParseException;
+import utils.TypeUtil;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+/**
+ * 数据字段long类型
+ */
 public class LongField implements Field<Long>, Comparable<LongField> {
     private Long value;
     private FieldType type;
@@ -33,14 +37,7 @@ public class LongField implements Field<Long>, Comparable<LongField> {
             throw new ParseException ("Parse Error:LongBytesLength=" + bytes.length);
         }
         if ("#".equals ((char) bytes[0])) return null;
-        value = (0xff00000000000000L & ((long) bytes[0] << 56)) |
-                (0x00ff000000000000L & ((long) bytes[1] << 48)) |
-                (0x0000ff0000000000L & ((long) bytes[2] << 40)) |
-                (0x000000ff00000000L & ((long) bytes[3] << 32)) |
-                (0x00000000ff000000L & ((long) bytes[4] << 24)) |
-                (0x0000000000ff0000L & ((long) bytes[5] << 16)) |
-                (0x000000000000ff00L & ((long) bytes[6] << 8)) |
-                (0x00000000000000ffL & (long) bytes[7]);
+        value = TypeUtil.bytesToLong (bytes);
         return value;
     }
 

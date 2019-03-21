@@ -6,6 +6,9 @@ import exception.ParseException;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+/**
+ * 数据字段可变长字符类型
+ */
 public class VarcharField implements Field<String>, Comparable<VarcharField> {
     private String value;
     private FieldType type;

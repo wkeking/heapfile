@@ -5,6 +5,9 @@ import utils.TypeUtil;
 import java.util.*;
 import java.util.stream.Stream;
 
+/**
+ * 表结构初始化
+ */
 public class TableConfig {
     public static final String NAME = "name";
     public static final String TYPE = "type";
@@ -21,16 +24,16 @@ public class TableConfig {
     public static final String BRACKET_A = ")";
     public static final String SEPARATOR = ",";
     public static final String POINT = ".";
-    public static final int BUFFERSIZE = 1024 * 1024 * 5;
+    public static final int BUFFERSIZE = 1024 * 1024 * 1;//读取数据流文件缓冲区大小
 
     public static final String PAGENAME = "heap";
     public static int RECORDLENGTH = 0;
-    public static String KEYWORDS;
+    public static String KEYWORDS;//查找数据流文件的key
 
-    public static final Map<String, String> defindTable = new LinkedHashMap<> ();
-    public static final List<Map<String, Object>> tableInfo = new ArrayList<> ();
+    public static final Map<String, String> defindTable = new LinkedHashMap<> ();//初始化表结构
+    public static final List<Map<String, Object>> tableInfo = new ArrayList<> ();//加载元数据对比表头，固定字段顺序
 
-    static {
+    static {//表结构
         defindTable.put ("DeviceId", TableConfig.INT + "(4)");
         defindTable.put ("ArrivalTime", TableConfig.DATE + "(8)");
         defindTable.put ("DepartureTime", TableConfig.DATE + "(8)");
@@ -46,6 +49,7 @@ public class TableConfig {
         defindTable.put ("In Violation", TableConfig.BOOLEAN + "(1)");
     }
 
+    //加载元数据初始化表结构
     public static void initTableInfo(String... fields) {
         Stream.of (fields).forEach (f -> {
             String attr = defindTable.get (f);
@@ -53,6 +57,7 @@ public class TableConfig {
         });
     }
 
+    //加载数据流文件初始化表结构
     public static void initTableInfo() {
         TableConfig.defindTable.forEach ((k, v) -> TableConfig.initTable (k, v));
     }

@@ -5,14 +5,15 @@ import element.fields.FieldType;
 import element.pages.Page;
 import element.records.Record;
 import utils.RecordUtil;
+import utils.TypeUtil;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.text.ParseException;
 
 public class Load {
-    private static int pageNum;
-    private static int pagePoint;
+    private static int pageNum;//加载的数据流文件总页数
+    private static int pagePoint;//当前需要解析的页指针
 
     private int pageSize;
     private String dataFilePath;
@@ -24,20 +25,22 @@ public class Load {
         this.dataFilePath = TableConfig.PAGENAME + TableConfig.POINT + String.valueOf (pageSize);
         raf = new RandomAccessFile(dataFilePath, "r");
         pageNum = (int) raf.length () / pageSize;
-        System.out.println(pageNum);
         pagePoint = 0;
     }
 
+    //加载的数据流文件是否有下一页
     public boolean hasNext() {
         return pagePoint < pageNum;
     }
 
+    //获取数据流文件下一页
     public Page next() throws IOException {
         Page page = nextPage ();
         pagePoint ++;
         return page;
     }
 
+    //关闭流
     public void close() throws IOException {
         if (raf != null) {
             raf.close ();
@@ -49,14 +52,12 @@ public class Load {
         long numIndex = beginIndex + pageSize - FieldType.INT.getLength(0);
         raf.seek(numIndex);
         byte[] numBytes = new byte[4];
-        raf.readFully(numBytes);
-        int recordNum = numBytes[3] & 0xFF |
-                (numBytes[2] & 0xFF) << 8 |
-                (numBytes[1] & 0xFF) << 16 |
-                (numBytes[0] & 0xFF) << 24;
+        raf.readFully(numBytes);//当前页记录总条数
+        int recordNum = TypeUtil.bytesToInt (numBytes);
         return new Page (pagePoint + 1, recordNum);
     }
 
+    //对传入的页进行解析，查找指定的记录
     public void query(Page page) throws IOException, ParseException {
         byte[] recordByte = new byte[TableConfig.RECORDLENGTH];
         raf.seek ((long) (page.getPageId () - 1) * pageSize);

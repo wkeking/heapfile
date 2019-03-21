@@ -5,6 +5,9 @@ import exception.ParseException;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+/**
+ * 数据字段布尔类型
+ */
 public class BooleanField implements Field<String>, Comparable<BooleanField> {
     private String value;
     private FieldType type;

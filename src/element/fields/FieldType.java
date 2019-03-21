@@ -2,6 +2,9 @@ package element.fields;
 
 import java.io.Serializable;
 
+/**
+ * 数据文件字段类型
+ */
 public enum FieldType implements Serializable {
     INT ("int") {
         public int getLength(int i) {

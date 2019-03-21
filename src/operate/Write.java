@@ -11,7 +11,7 @@ import java.util.Map;
 public class Write {
     private int pageSize;
     private String dataFilePath;
-    private long recordsNum;
+    private long recordsNum;//记录总条数
 
     public Write(int pageSize, String dataFilePath) {
         this.pageSize = pageSize;
@@ -19,6 +19,7 @@ public class Write {
         recordsNum = 0L;
     }
 
+    //读取元数据，写成固定格式的数据流文件
     public void write() {
         String heapPath = TableConfig.PAGENAME + "." + pageSize;
         File file = new File (heapPath);
@@ -33,7 +34,7 @@ public class Write {
             int realSize = FieldType.INT.getLength (0);
             int pRecordNum = 0;
             String record;
-            while ((record = lnr.readLine ()) != null) {
+            while ((record = lnr.readLine ()) != null) {//一次写一页文件
                 if ((realSize + TableConfig.RECORDLENGTH) > pageSize) {
                     int space = pageSize - realSize;
                     StringBuilder sb = new StringBuilder ();

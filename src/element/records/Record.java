@@ -2,6 +2,9 @@ package element.records;
 
 import config.TableConfig;
 
+/**
+ * 数据文件单条记录
+ */
 public class Record {
     private final String[] fields;
     private final int size;

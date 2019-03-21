@@ -1,10 +1,14 @@
 package element.fields;
 
 import exception.ParseException;
+import utils.TypeUtil;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+/**
+ * 数据字段int类型
+ */
 public class IntField implements Field<Integer>, Comparable<IntField> {
     private Integer value;
     private FieldType type;
@@ -32,10 +36,7 @@ public class IntField implements Field<Integer>, Comparable<IntField> {
             throw new ParseException ("Parse Error:IntBytesLength=" + bytes.length);
         }
         if ("#".equals ((char) bytes[0])) value = null;
-        value = bytes[3] & 0xFF |
-                (bytes[2] & 0xFF) << 8 |
-                (bytes[1] & 0xFF) << 16 |
-                (bytes[0] & 0xFF) << 24;
+        value = TypeUtil.bytesToInt(bytes);
         return value;
     }
 
