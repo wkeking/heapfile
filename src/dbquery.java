@@ -39,8 +39,7 @@ public class dbquery {
                 List<Record> recordList = page.getList ();
                 if (recordList.size () > 0) {
                     recordList.forEach (r -> {
-                        System.out.println("Page ID:" + r.getPageId ());
-                        System.out.println("Record ID:" + r.getRecordId ());
+                        System.out.println("Page ID:" + r.getPageId () + ",Record ID:" + r.getRecordId ());
                         System.out.println ("Record Value:" + r.toString ());
                     });
                 }
