@@ -19,7 +19,7 @@ public class TableConfig {
     public static final String BOOLEAN = "boolean";
     public static final String DATE = "date";
 
-    public static final String DATEFORMAT = "dd/MM/yyyy KK:mm:ss aa";
+    public static final String DATEFORMAT = "MM/dd/yyyy KK:mm:ss aa";
     public static final String BRACKET_B = "(";
     public static final String BRACKET_A = ")";
     public static final String SEPARATOR = ",";

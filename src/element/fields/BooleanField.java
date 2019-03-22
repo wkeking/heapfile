@@ -38,10 +38,10 @@ public class BooleanField implements Field<String>, Comparable<BooleanField> {
         String s = new String (bytes);
         switch (s) {
             case "0":
-                value = Boolean.FALSE.toString ();
+                value = Boolean.FALSE.toString ().toUpperCase ();
                 break;
             case "1":
-                value = Boolean.TRUE.toString ();
+                value = Boolean.TRUE.toString ().toUpperCase ();
                 break;
             case "#":
                 value = null;
