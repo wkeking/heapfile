@@ -2,7 +2,8 @@ import operate.Write;
 
 public class dbload {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        //TimeUnit.SECONDS.sleep(5);
         if (args.length != 3) {
             System.out.println("The parameter must have three");
             return;
