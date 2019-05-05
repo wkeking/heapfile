@@ -1,6 +1,8 @@
 package element.tree;
 
-public interface BTree {
+import java.io.Serializable;
+
+public interface BTree extends Serializable {
     public Object get(Comparable key);   //查询
 
     public void remove(Comparable key);    //移除

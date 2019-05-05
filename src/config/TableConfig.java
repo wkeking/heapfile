@@ -27,6 +27,7 @@ public class TableConfig {
     public static final int BUFFERSIZE = 1024 * 1024 * 2;//读取数据流文件缓冲区大小
 
     public static final String PAGENAME = "heap";
+    public static final String INDEXNAME = "index.dat";
     public static int RECORDLENGTH = 0;
     public static String KEYWORDS;//查找数据流文件的key
 

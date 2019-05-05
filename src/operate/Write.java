@@ -4,6 +4,9 @@ import config.TableConfig;
 import element.fields.Field;
 import element.fields.FieldFactory;
 import element.fields.FieldType;
+import element.tree.BTree;
+import element.tree.BplusTree;
+import element.tree.Index;
 
 import java.io.*;
 import java.util.Map;
@@ -23,6 +26,7 @@ public class Write {
     public void write() {
         String heapPath = TableConfig.PAGENAME + "." + pageSize;
         File file = new File (heapPath);
+        BplusTree tree = new BplusTree (6);
         try (FileReader fr = new FileReader (dataFilePath);
              BufferedReader lnr = new BufferedReader(fr, TableConfig.BUFFERSIZE);
              FileOutputStream fos = new FileOutputStream (file);
@@ -57,9 +61,29 @@ public class Write {
                 pRecordNum ++;
                 realSize += TableConfig.RECORDLENGTH;
                 recordsNum ++;
+
+                //创建DeviceId ArrivalTime索引
+                Index index = new Index (pageNum, pRecordNum - 1);
+                String key = rs[0] + rs[1];
+                tree.insertOrUpdate (key, index);
             }
+
+            //写索引文件
+            writeIndexFile (tree);
             System.out.println ("The number of records loaded is " + recordsNum);
             System.out.println ("The number of pages saved is " + pageNum);
+        } catch (Exception e) {
+            e.printStackTrace ();
+        }
+    }
+
+    public void writeIndexFile(BTree tree) {
+        File file = new File (TableConfig.INDEXNAME);
+        try (FileOutputStream fos = new FileOutputStream (file);
+             BufferedOutputStream bos = new BufferedOutputStream (fos, 1024);
+             ObjectOutputStream oos = new ObjectOutputStream (bos)) {
+            oos.writeObject (tree);
+            System.out.println("Successfully written to the index file!");
         } catch (Exception e) {
             e.printStackTrace ();
         }

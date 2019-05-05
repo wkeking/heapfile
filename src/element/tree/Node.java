@@ -1,11 +1,12 @@
 package element.tree;
 
+import java.io.Serializable;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-public class Node {
+public class Node implements Serializable {
 
     /**
      * 是否为叶子节点
