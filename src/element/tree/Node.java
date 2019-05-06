@@ -8,47 +8,26 @@ import java.util.Map.Entry;
 
 public class Node implements Serializable {
 
-    /**
-     * 是否为叶子节点
-     */
-    protected boolean isLeaf;
+    protected boolean isLeaf;//是否为叶子节点
 
-    /**
-     * 是否为根节点
-     */
-    protected boolean isRoot;
+    protected boolean isRoot;//是否为根节点
 
-    /**
-     * 父节点
-     */
-    protected Node parent;
+    protected Node parent;//父节点
 
-    /**
-     * 叶节点的前节点
-     */
-    protected Node previous;
+    protected Node previous;//叶节点的前节点
 
-    /**
-     * 叶节点的后节点
-     */
-    protected Node next;
+    protected Node next;//叶节点的后节点
 
-    /**
-     * 节点的关键字
-     */
-    protected List<Entry<Comparable, Object>> entries;
+    protected List<Entry<Comparable, Object>> entries;//节点的关键字
 
-    /**
-     * 子节点
-     */
-    protected List<Node> children;
+    protected List<Node> children;//子节点
 
     public Node(boolean isLeaf) {
         this.isLeaf = isLeaf;
-        entries = new ArrayList<Entry<Comparable, Object>> ();
+        entries = new ArrayList<> ();
 
         if (!isLeaf) {
-            children = new ArrayList<Node> ();
+            children = new ArrayList<> ();
         }
     }
 
@@ -157,9 +136,7 @@ public class Node implements Serializable {
         }
     }
 
-    /**
-     * 插入节点后中间节点的更新
-     */
+    //插入节点后中间节点的更新
     protected void updateInsert(BplusTree tree) {
 
         validate (this, tree);
@@ -219,9 +196,7 @@ public class Node implements Serializable {
         }
     }
 
-    /**
-     * 调整节点关键字
-     */
+    //调整节点关键字
     protected static void validate(Node node, BplusTree tree) {
 
         // 如果关键字个数与子节点个数相同
@@ -252,9 +227,7 @@ public class Node implements Serializable {
         }
     }
 
-    /**
-     * 删除节点后中间节点的更新
-     */
+    //删除节点后中间节点的更新
     protected void updateRemove(BplusTree tree) {
 
         validate (this, tree);
@@ -475,9 +448,7 @@ public class Node implements Serializable {
         return false;
     }
 
-    /**
-     * 插入到当前节点的关键字中
-     */
+    //插入到当前节点的关键字中
     protected void insertOrUpdate(Comparable key, Object obj) {
         Entry<Comparable, Object> entry = new SimpleEntry<Comparable, Object> (key, obj);
         //如果关键字列表长度为0，则直接插入
@@ -511,9 +482,7 @@ public class Node implements Serializable {
         entries.add (entries.size (), entry);
     }
 
-    /**
-     * 删除节点
-     */
+    //删除节点
     protected void remove(Comparable key) {
         int index = -1;
         for (int i = 0; i < entries.size (); i++) {

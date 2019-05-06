@@ -1,9 +1,6 @@
 import config.TableConfig;
 import operate.Search;
 
-import java.io.IOException;
-import java.text.ParseException;
-
 public class dbsearch {
     public static void main(String[] args) {
         if (args.length != 2) {
@@ -31,12 +28,8 @@ public class dbsearch {
             Search search = new Search (TableConfig.KEYWORDS, pageSize);
             search.search ();
             long stop = System.currentTimeMillis ();
-            System.out.println("The number of milliseconds to query the heap file is " + (stop - start) + "ms");
-        } catch (IOException e) {
-            e.printStackTrace ();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace ();
-        } catch (ParseException e) {
+            System.out.println("The number of milliseconds to search the heap file is " + (stop - start) + "ms");
+        } catch (Exception e) {
             e.printStackTrace ();
         }
     }

@@ -1,22 +1,12 @@
 package element.tree;
 
-import java.util.Random;
-
 public class BplusTree implements BTree {
-    /**
-     * 根节点
-     */
-    protected Node root;
 
-    /**
-     * 阶数，M值
-     */
-    protected int order;
+    protected Node root;//根节点
 
-    /**
-     * 叶子节点的链表头
-     */
-    protected Node head;
+    protected int order;//阶数，M值
+
+    protected Node head;//叶子节点的链表头
 
     public Node getHead() {
         return head;
@@ -69,26 +59,4 @@ public class BplusTree implements BTree {
         head = root;
     }
 
-    //测试
-    public static void main(String[] args) {
-        BplusTree tree = new BplusTree (6);
-        Random random = new Random ();
-        long current = System.currentTimeMillis ();
-        for (int j = 0; j < 100000; j++) {
-            for (int i = 0; i < 100; i++) {
-                int randomNumber = random.nextInt (1000);
-                tree.insertOrUpdate (randomNumber, randomNumber);
-            }
-
-            for (int i = 0; i < 100; i++) {
-                int randomNumber = random.nextInt (1000);
-                tree.remove (randomNumber);
-            }
-        }
-
-        long duration = System.currentTimeMillis () - current;
-        System.out.println ("time elpsed for duration: " + duration);
-        int search = 80;
-        System.out.print (tree.get (search));
-    }
 }
