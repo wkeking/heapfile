@@ -489,7 +489,10 @@ public class Node implements Serializable {
         for (int i = 0; i < entries.size (); i++) {
             //如果该关键字键值已存在，则更新
             if (entries.get (i).getKey ().compareTo (key) == 0) {
-                entries.get (i).setValue (obj);
+                //entries.get (i).setValue (obj);
+                List<Index> indices = (List) entries.get (i).getValue ();
+                indices.addAll ((List) obj);
+                entries.get (i).setValue (indices);
                 return;
                 //否则插入
             } else if (entries.get (i).getKey ().compareTo (key) > 0) {

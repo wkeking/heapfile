@@ -4,11 +4,12 @@ import config.TableConfig;
 import element.fields.Field;
 import element.fields.FieldFactory;
 import element.fields.FieldType;
-import element.tree.BTree;
 import element.tree.BplusTree;
 import element.tree.Index;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Write {
@@ -26,7 +27,8 @@ public class Write {
     public void write() {
         String heapPath = TableConfig.PAGENAME + "." + pageSize;
         File file = new File (heapPath);
-        BplusTree tree = new BplusTree (6);
+        //BPlusTree<String, Index> tree = new BPlusTree (8);
+        BplusTree tree = new BplusTree (8);
         try (FileReader fr = new FileReader (dataFilePath);
              BufferedReader lnr = new BufferedReader(fr, TableConfig.BUFFERSIZE);
              FileOutputStream fos = new FileOutputStream (file);
@@ -63,9 +65,11 @@ public class Write {
                 recordsNum ++;
 
                 //创建DeviceId ArrivalTime索引
+                List<Index> indices = new ArrayList<> ();
                 Index index = new Index (pageNum, pRecordNum - 1);
+                indices.add (index);
                 String key = rs[0] + rs[1];
-                tree.insertOrUpdate (key, index);
+                tree.insertOrUpdate (key, indices);
             }
 
             //写索引文件
@@ -77,15 +81,15 @@ public class Write {
         }
     }
 
-    public void writeIndexFile(BTree tree) {
+    private void writeIndexFile(BplusTree tree) throws IOException {
         File file = new File (TableConfig.INDEXNAME);
         try (FileOutputStream fos = new FileOutputStream (file);
              BufferedOutputStream bos = new BufferedOutputStream (fos, 1024);
              ObjectOutputStream oos = new ObjectOutputStream (bos)) {
             oos.writeObject (tree);
             System.out.println("Successfully written to the index file!");
-        } catch (Exception e) {
-            e.printStackTrace ();
+        } catch (IOException e) {
+            throw e;
         }
     }
 }

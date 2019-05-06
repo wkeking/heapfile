@@ -26,4 +26,12 @@ public class Index implements Serializable {
     public void setRecordId(int recordId) {
         this.recordId = recordId;
     }
+
+    @Override
+    public String toString() {
+        return "Index{" +
+                "pageId=" + pageId +
+                ", recordId=" + recordId +
+                '}';
+    }
 }
