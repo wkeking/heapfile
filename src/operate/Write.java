@@ -84,7 +84,7 @@ public class Write {
     private void writeIndexFile(BplusTree tree) throws IOException {
         File file = new File (TableConfig.INDEXNAME);
         try (FileOutputStream fos = new FileOutputStream (file);
-             BufferedOutputStream bos = new BufferedOutputStream (fos, 1024);
+             BufferedOutputStream bos = new BufferedOutputStream (fos, TableConfig.BUFFERSIZE);
              ObjectOutputStream oos = new ObjectOutputStream (bos)) {
             oos.writeObject (tree);
             System.out.println("Successfully written to the index file!");

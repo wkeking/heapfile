@@ -24,7 +24,8 @@ public class Search {
         raf = new RandomAccessFile(TableConfig.PAGENAME + TableConfig.POINT + String.valueOf (pageSize), "r");
         File file = new File (TableConfig.INDEXNAME);
         try (FileInputStream fis = new FileInputStream (file);
-             ObjectInputStream ois = new ObjectInputStream (fis)) {
+             BufferedInputStream bis = new BufferedInputStream(fis, TableConfig.BUFFERSIZE);
+             ObjectInputStream ois = new ObjectInputStream (bis)) {
             tree = (BTree) ois.readObject ();
         } catch (Exception e) {
             throw e;
