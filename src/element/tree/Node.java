@@ -450,7 +450,7 @@ public class Node implements Serializable {
 
     //插入到当前节点的关键字中
     protected void insertOrUpdate(Comparable key, Object obj) {
-        Entry<Comparable, Object> entry = new SimpleEntry<Comparable, Object> (key, obj);
+        Entry<Comparable, Object> entry = new SimpleEntry<> (key, obj);
         //如果关键字列表长度为0，则直接插入
         if (entries.size () == 0) {
             entries.add (entry);
@@ -461,8 +461,8 @@ public class Node implements Serializable {
             //如果该关键字键值已存在，则更新
             if (entries.get (i).getKey ().compareTo (key) == 0) {
                 //entries.get (i).setValue (obj);
-                List<Index> indices = (List) entries.get (i).getValue ();
-                indices.addAll ((List) obj);
+                List<Index> indices = (List<Index>) entries.get (i).getValue ();
+                indices.addAll ((List<Index>) obj);
                 entries.get (i).setValue (indices);
                 return;
                 //否则插入

@@ -29,6 +29,7 @@ public class dbsearch {
             search.search ();
             long stop = System.currentTimeMillis ();
             System.out.println("The number of milliseconds to search the heap file is " + (stop - start) + "ms");
+            search.close ();
         } catch (Exception e) {
             e.printStackTrace ();
         }

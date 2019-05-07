@@ -2,7 +2,7 @@ package operate;
 
 import config.TableConfig;
 import element.records.Record;
-import element.tree.BplusTree;
+import element.tree.BTree;
 import element.tree.Index;
 import utils.RecordUtil;
 
@@ -15,9 +15,9 @@ public class Search {
     private String key;
     private int pageSize;
     private RandomAccessFile raf;
-    private BplusTree tree;
+    private BTree tree;
 
-    public Search(String key, int pageSize) throws IOException, ClassNotFoundException, ParseException {
+    public Search(String key, int pageSize) throws IOException, ClassNotFoundException {
         TableConfig.initTableInfo();
         this.key = key;
         this.pageSize = pageSize;
@@ -25,14 +25,14 @@ public class Search {
         File file = new File (TableConfig.INDEXNAME);
         try (FileInputStream fis = new FileInputStream (file);
              ObjectInputStream ois = new ObjectInputStream (fis)) {
-            tree = (BplusTree) ois.readObject ();
+            tree = (BTree) ois.readObject ();
         } catch (Exception e) {
             throw e;
         }
     }
 
     public void search() throws IOException, ParseException {
-        List<Index> indices = (List) tree.get (key);
+        List<Index> indices = (List<Index>) tree.get (key);
         for (Index index : indices) {
             int pageId = index.getPageId ();
             int recordId = index.getRecordId ();
@@ -46,5 +46,10 @@ public class Search {
         }
     }
 
-
+    //关闭流
+    public void close() throws IOException {
+        if (raf != null) {
+            raf.close ();
+        }
+    }
 }
