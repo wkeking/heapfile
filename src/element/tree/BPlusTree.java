@@ -40,13 +40,11 @@ public class BPlusTree implements BTree {
     @Override
     public void remove(Comparable key) {
         root.remove (key, this);
-
     }
 
     @Override
-    public void insertOrUpdate(Comparable key, Object obj) {
-        root.insertOrUpdate (key, obj, this);
-
+    public void insert(Comparable key, Object obj) {
+        root.insert (key, obj, this);
     }
 
     public BPlusTree(int order) {

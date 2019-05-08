@@ -68,7 +68,7 @@ public class Write {
                 Index index = new Index (pageNum, pRecordNum - 1);
                 indices.add (index);
                 String key = rs[0] + rs[1];
-                tree.insertOrUpdate (key, indices);
+                tree.insert (key, indices);
             }
 
             //写索引文件
