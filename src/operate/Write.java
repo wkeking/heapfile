@@ -27,7 +27,6 @@ public class Write {
     public void write() {
         String heapPath = TableConfig.PAGENAME + "." + pageSize;
         File file = new File (heapPath);
-        //BPlusTree<String, Index> tree = new BPlusTree (8);
         BplusTree tree = new BplusTree (8);
         try (FileReader fr = new FileReader (dataFilePath);
              BufferedReader lnr = new BufferedReader(fr, TableConfig.BUFFERSIZE);

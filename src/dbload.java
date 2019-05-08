@@ -1,7 +1,6 @@
 import operate.Write;
 
 public class dbload {
-
     public static void main(String[] args) {
         //TimeUnit.SECONDS.sleep(5);
         if (args.length != 3) {

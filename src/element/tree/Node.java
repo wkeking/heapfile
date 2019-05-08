@@ -24,10 +24,10 @@ public class Node implements Serializable {
 
     public Node(boolean isLeaf) {
         this.isLeaf = isLeaf;
-        entries = new ArrayList<> ();
+        entries = new ArrayList<Entry<Comparable, Object>> ();
 
         if (!isLeaf) {
-            children = new ArrayList<> ();
+            children = new ArrayList<Node> ();
         }
     }
 
@@ -450,7 +450,7 @@ public class Node implements Serializable {
 
     //插入到当前节点的关键字中
     protected void insertOrUpdate(Comparable key, Object obj) {
-        Entry<Comparable, Object> entry = new SimpleEntry<> (key, obj);
+        Entry<Comparable, Object> entry = new SimpleEntry<Comparable, Object> (key, obj);
         //如果关键字列表长度为0，则直接插入
         if (entries.size () == 0) {
             entries.add (entry);
