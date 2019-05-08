@@ -4,7 +4,7 @@ import config.TableConfig;
 import element.fields.Field;
 import element.fields.FieldFactory;
 import element.fields.FieldType;
-import element.tree.BplusTree;
+import element.tree.BPlusTree;
 import element.tree.Index;
 
 import java.io.*;
@@ -27,7 +27,7 @@ public class Write {
     public void write() {
         String heapPath = TableConfig.PAGENAME + "." + pageSize;
         File file = new File (heapPath);
-        BplusTree tree = new BplusTree (8);
+        BPlusTree tree = new BPlusTree (8);
         try (FileReader fr = new FileReader (dataFilePath);
              BufferedReader lnr = new BufferedReader(fr, TableConfig.BUFFERSIZE);
              FileOutputStream fos = new FileOutputStream (file);
@@ -80,7 +80,7 @@ public class Write {
         }
     }
 
-    private void writeIndexFile(BplusTree tree) throws IOException {
+    private void writeIndexFile(BPlusTree tree) throws IOException {
         File file = new File (TableConfig.INDEXNAME);
         try (FileOutputStream fos = new FileOutputStream (file);
              BufferedOutputStream bos = new BufferedOutputStream (fos, TableConfig.BUFFERSIZE);

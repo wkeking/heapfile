@@ -1,26 +1,26 @@
 package element.tree;
 
-public class BplusTree implements BTree {
+public class BPlusTree implements BTree {
 
-    protected Node root;//根节点
+    protected TreeNode root;//根节点
 
     protected int order;//阶数，M值
 
-    protected Node head;//叶子节点的链表头
+    protected TreeNode head;//叶子节点的链表头
 
-    public Node getHead() {
+    public TreeNode getHead() {
         return head;
     }
 
-    public void setHead(Node head) {
+    public void setHead(TreeNode head) {
         this.head = head;
     }
 
-    public Node getRoot() {
+    public TreeNode getRoot() {
         return root;
     }
 
-    public void setRoot(Node root) {
+    public void setRoot(TreeNode root) {
         this.root = root;
     }
 
@@ -49,13 +49,13 @@ public class BplusTree implements BTree {
 
     }
 
-    public BplusTree(int order) {
+    public BPlusTree(int order) {
         if (order < 3) {
             System.out.print ("order must be greater than 2");
             System.exit (0);
         }
         this.order = order;
-        root = new Node (true, true);
+        root = new TreeNode (true, true);
         head = root;
     }
 

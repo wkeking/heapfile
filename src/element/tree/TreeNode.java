@@ -6,32 +6,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-public class Node implements Serializable {
+public class TreeNode implements Serializable {
 
-    protected boolean isLeaf;//是否为叶子节点
+    private boolean isLeaf;//是否为叶子节点
 
-    protected boolean isRoot;//是否为根节点
+    private boolean isRoot;//是否为根节点
 
-    protected Node parent;//父节点
+    private TreeNode parent;//父节点
 
-    protected Node previous;//叶节点的前节点
+    private TreeNode previous;//叶节点的前节点
 
-    protected Node next;//叶节点的后节点
+    private TreeNode next;//叶节点的后节点
 
-    protected List<Entry<Comparable, Object>> entries;//节点的关键字
+    private List<Entry<Comparable, Object>> entries;//节点的关键字
 
-    protected List<Node> children;//子节点
+    private List<TreeNode> children;//子节点
 
-    public Node(boolean isLeaf) {
+    public TreeNode(boolean isLeaf) {
         this.isLeaf = isLeaf;
         entries = new ArrayList<Entry<Comparable, Object>> ();
 
         if (!isLeaf) {
-            children = new ArrayList<Node> ();
+            children = new ArrayList<TreeNode> ();
         }
     }
 
-    public Node(boolean isLeaf, boolean isRoot) {
+    public TreeNode(boolean isLeaf, boolean isRoot) {
         this (isLeaf);
         this.isRoot = isRoot;
     }
@@ -68,7 +68,7 @@ public class Node implements Serializable {
         return null;
     }
 
-    public void insertOrUpdate(Comparable key, Object obj, BplusTree tree) {
+    public void insertOrUpdate(Comparable key, Object obj, BPlusTree tree) {
 
         if (isLeaf) {//如果是叶子节点
             //不需要分裂，直接插入或更新
@@ -81,8 +81,8 @@ public class Node implements Serializable {
 
             } else {//需要分裂
                 //分裂成左右两个节点
-                Node left = new Node (true);
-                Node right = new Node (true);
+                TreeNode left = new TreeNode (true);
+                TreeNode right = new TreeNode (true);
                 //设置链接
                 if (previous != null) {
                     previous.setNext (left);
@@ -137,15 +137,15 @@ public class Node implements Serializable {
     }
 
     //插入节点后中间节点的更新
-    protected void updateInsert(BplusTree tree) {
+    protected void updateInsert(BPlusTree tree) {
 
         validate (this, tree);
 
         //如果子节点数超出阶数，则需要分裂该节点
         if (children.size () > tree.getOrder ()) {
             //分裂成左右两个节点
-            Node left = new Node (false);
-            Node right = new Node (false);
+            TreeNode left = new TreeNode (false);
+            TreeNode right = new TreeNode (false);
             //左右两个节点关键字长度
             int leftSize = (tree.getOrder () + 1) / 2 + (tree.getOrder () + 1) % 2;
             int rightSize = (tree.getOrder () + 1) / 2;
@@ -165,7 +165,7 @@ public class Node implements Serializable {
         }
     }
 
-    private void siteNode(BplusTree tree, Node left, Node right) {
+    private void siteNode(BPlusTree tree, TreeNode left, TreeNode right) {
         if (parent != null) {//如果不是根节点
             //调整父子节点关系
             int index = parent.getChildren ().indexOf (this);
@@ -182,7 +182,7 @@ public class Node implements Serializable {
             setParent (null);
         } else {//如果是根节点
             isRoot = false;
-            Node parent = new Node (false, true);
+            TreeNode parent = new TreeNode (false, true);
             tree.setRoot (parent);
             left.setParent (parent);
             right.setParent (parent);
@@ -197,38 +197,38 @@ public class Node implements Serializable {
     }
 
     //调整节点关键字
-    protected static void validate(Node node, BplusTree tree) {
+    protected static void validate(TreeNode treeNode, BPlusTree tree) {
 
         // 如果关键字个数与子节点个数相同
-        if (node.getEntries ().size () == node.getChildren ().size ()) {
-            for (int i = 0; i < node.getEntries ().size (); i++) {
-                Comparable key = node.getChildren ().get (i).getEntries ().get (0).getKey ();
-                if (node.getEntries ().get (i).getKey ().compareTo (key) != 0) {
-                    node.getEntries ().remove (i);
-                    node.getEntries ().add (i, new SimpleEntry (key, null));
-                    if (!node.isRoot ()) {
-                        validate (node.getParent (), tree);
+        if (treeNode.getEntries ().size () == treeNode.getChildren ().size ()) {
+            for (int i = 0; i < treeNode.getEntries ().size (); i++) {
+                Comparable key = treeNode.getChildren ().get (i).getEntries ().get (0).getKey ();
+                if (treeNode.getEntries ().get (i).getKey ().compareTo (key) != 0) {
+                    treeNode.getEntries ().remove (i);
+                    treeNode.getEntries ().add (i, new SimpleEntry (key, null));
+                    if (!treeNode.isRoot ()) {
+                        validate (treeNode.getParent (), tree);
                     }
                 }
             }
             // 如果子节点数不等于关键字个数但仍大于M / 2并且小于M，并且大于2
-        } else if (node.isRoot () && node.getChildren ().size () >= 2
-                || node.getChildren ().size () >= tree.getOrder () / 2
-                && node.getChildren ().size () <= tree.getOrder ()
-                && node.getChildren ().size () >= 2) {
-            node.getEntries ().clear ();
-            for (int i = 0; i < node.getChildren ().size (); i++) {
-                Comparable key = node.getChildren ().get (i).getEntries ().get (0).getKey ();
-                node.getEntries ().add (new SimpleEntry (key, null));
-                if (!node.isRoot ()) {
-                    validate (node.getParent (), tree);
+        } else if (treeNode.isRoot () && treeNode.getChildren ().size () >= 2
+                || treeNode.getChildren ().size () >= tree.getOrder () / 2
+                && treeNode.getChildren ().size () <= tree.getOrder ()
+                && treeNode.getChildren ().size () >= 2) {
+            treeNode.getEntries ().clear ();
+            for (int i = 0; i < treeNode.getChildren ().size (); i++) {
+                Comparable key = treeNode.getChildren ().get (i).getEntries ().get (0).getKey ();
+                treeNode.getEntries ().add (new SimpleEntry (key, null));
+                if (!treeNode.isRoot ()) {
+                    validate (treeNode.getParent (), tree);
                 }
             }
         }
     }
 
     //删除节点后中间节点的更新
-    protected void updateRemove(BplusTree tree) {
+    protected void updateRemove(BPlusTree tree) {
 
         validate (this, tree);
 
@@ -240,7 +240,7 @@ public class Node implements Serializable {
                     return;
                     // 否则与子节点合并
                 } else {
-                    Node root = children.get (0);
+                    TreeNode root = children.get (0);
                     tree.setRoot (root);
                     root.setParent (null);
                     root.setRoot (true);
@@ -252,7 +252,7 @@ public class Node implements Serializable {
                 int currIdx = parent.getChildren ().indexOf (this);
                 int prevIdx = currIdx - 1;
                 int nextIdx = currIdx + 1;
-                Node previous = null, next = null;
+                TreeNode previous = null, next = null;
                 if (prevIdx >= 0) {
                     previous = parent.getChildren ().get (prevIdx);
                 }
@@ -266,7 +266,7 @@ public class Node implements Serializable {
                         && previous.getChildren ().size () > 2) {
                     //前叶子节点末尾节点添加到首位
                     int idx = previous.getChildren ().size () - 1;
-                    Node borrow = previous.getChildren ().get (idx);
+                    TreeNode borrow = previous.getChildren ().get (idx);
                     previous.getChildren ().remove (idx);
                     borrow.setParent (this);
                     children.add (0, borrow);
@@ -279,7 +279,7 @@ public class Node implements Serializable {
                         && next.getChildren ().size () > tree.getOrder () / 2
                         && next.getChildren ().size () > 2) {
                     //后叶子节点首位添加到末尾
-                    Node borrow = next.getChildren ().get (0);
+                    TreeNode borrow = next.getChildren ().get (0);
                     next.getChildren ().remove (0);
                     borrow.setParent (this);
                     children.add (borrow);
@@ -294,7 +294,7 @@ public class Node implements Serializable {
                             && (previous.getChildren ().size () <= tree.getOrder () / 2 || previous.getChildren ().size () <= 2)) {
 
                         for (int i = previous.getChildren ().size () - 1; i >= 0; i--) {
-                            Node child = previous.getChildren ().get (i);
+                            TreeNode child = previous.getChildren ().get (i);
                             children.add (0, child);
                             child.setParent (this);
                         }
@@ -310,7 +310,7 @@ public class Node implements Serializable {
                             && (next.getChildren ().size () <= tree.getOrder () / 2 || next.getChildren ().size () <= 2)) {
 
                         for (int i = 0; i < next.getChildren ().size (); i++) {
-                            Node child = next.getChildren ().get (i);
+                            TreeNode child = next.getChildren ().get (i);
                             children.add (child);
                             child.setParent (this);
                         }
@@ -326,7 +326,7 @@ public class Node implements Serializable {
         }
     }
 
-    public void remove(Comparable key, BplusTree tree) {
+    public void remove(Comparable key, BPlusTree tree) {
 
         if (isLeaf) {//如果是叶子节点
             //如果不包含该关键字，则直接返回
@@ -378,7 +378,7 @@ public class Node implements Serializable {
                             parent.getChildren ().remove (previous);
                             //更新链表
                             if (previous.getPrevious () != null) {
-                                Node temp = previous;
+                                TreeNode temp = previous;
                                 temp.getPrevious ().setNext (this);
                                 previous = temp.getPrevious ();
                                 temp.setPrevious (null);
@@ -402,7 +402,7 @@ public class Node implements Serializable {
                             parent.getChildren ().remove (next);
                             //更新链表
                             if (next.getNext () != null) {
-                                Node temp = next;
+                                TreeNode temp = next;
                                 temp.getNext ().setPrevious (this);
                                 next = temp.getNext ();
                                 temp.setPrevious (null);
@@ -496,19 +496,19 @@ public class Node implements Serializable {
         }
     }
 
-    public Node getPrevious() {
+    public TreeNode getPrevious() {
         return previous;
     }
 
-    public void setPrevious(Node previous) {
+    public void setPrevious(TreeNode previous) {
         this.previous = previous;
     }
 
-    public Node getNext() {
+    public TreeNode getNext() {
         return next;
     }
 
-    public void setNext(Node next) {
+    public void setNext(TreeNode next) {
         this.next = next;
     }
 
@@ -520,11 +520,11 @@ public class Node implements Serializable {
         this.isLeaf = isLeaf;
     }
 
-    public Node getParent() {
+    public TreeNode getParent() {
         return parent;
     }
 
-    public void setParent(Node parent) {
+    public void setParent(TreeNode parent) {
         this.parent = parent;
     }
 
@@ -536,11 +536,11 @@ public class Node implements Serializable {
         this.entries = entries;
     }
 
-    public List<Node> getChildren() {
+    public List<TreeNode> getChildren() {
         return children;
     }
 
-    public void setChildren(List<Node> children) {
+    public void setChildren(List<TreeNode> children) {
         this.children = children;
     }
 
@@ -552,21 +552,14 @@ public class Node implements Serializable {
         this.isRoot = isRoot;
     }
 
+    @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder ();
-        sb.append ("isRoot: ");
-        sb.append (isRoot);
-        sb.append (", ");
-        sb.append ("isLeaf: ");
-        sb.append (isLeaf);
-        sb.append (", ");
-        sb.append ("keys: ");
-        for (Entry entry : entries) {
-            sb.append (entry.getKey ());
-            sb.append (", ");
-        }
-        sb.append (", ");
-        return sb.toString ();
+        return "TreeNode{" +
+                "isLeaf=" + isLeaf +
+                ", isRoot=" + isRoot +
+                ", parent=" + parent +
+                ", previous=" + previous +
+                ", next=" + next +
+                '}';
     }
-
 }
