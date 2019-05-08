@@ -426,9 +426,7 @@ public class TreeNode implements Serializable {
         }
     }
 
-    /**
-     * 判断当前节点是否包含该关键字
-     */
+    //判断当前节点是否包含该关键字
     private boolean contains(Comparable key) {
         for (Entry<Comparable, Object> entry : entries) {
             if (entry.getKey ().compareTo (key) == 0) {
