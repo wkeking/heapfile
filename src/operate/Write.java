@@ -8,6 +8,7 @@ import element.tree.BPlusTree;
 import element.tree.Index;
 
 import java.io.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class Write {
     }
 
     //读取元数据，写成固定格式的数据流文件
-    public void write() {
+    public void write() throws IOException, ParseException {
         String heapPath = TableConfig.PAGENAME + "." + pageSize;
         File file = new File (heapPath);
         BPlusTree tree = new BPlusTree (8);
@@ -76,7 +77,7 @@ public class Write {
             System.out.println ("The number of records loaded is " + recordsNum);
             System.out.println ("The number of pages saved is " + pageNum);
         } catch (Exception e) {
-            e.printStackTrace ();
+            throw e;
         }
     }
 

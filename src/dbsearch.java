@@ -1,6 +1,8 @@
 import config.TableConfig;
 import operate.Search;
 
+import java.io.IOException;
+
 public class dbsearch {
     public static void main(String[] args) {
         if (args.length != 2) {
@@ -23,15 +25,24 @@ public class dbsearch {
         } catch (Exception e) {
             System.out.println("The size of page need int type");
         }
+        Search search = null;
         try {
             long start = System.currentTimeMillis ();
-            Search search = new Search (TableConfig.KEYWORDS, pageSize);
+            search = new Search (TableConfig.KEYWORDS, pageSize);
             search.search ();
             long stop = System.currentTimeMillis ();
             System.out.println("The number of milliseconds to search the heap file is " + (stop - start) + "ms");
-            search.close ();
+
         } catch (Exception e) {
             e.printStackTrace ();
+        } finally {
+            if (search != null) {
+                try {
+                    search.close ();
+                } catch (IOException e) {
+                    e.printStackTrace ();
+                }
+            }
         }
     }
 }

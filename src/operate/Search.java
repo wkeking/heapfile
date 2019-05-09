@@ -11,7 +11,6 @@ import java.text.ParseException;
 import java.util.List;
 
 public class Search {
-
     private String key;
     private int pageSize;
     private RandomAccessFile raf;

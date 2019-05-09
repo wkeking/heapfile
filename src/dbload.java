@@ -2,7 +2,6 @@ import operate.Write;
 
 public class dbload {
     public static void main(String[] args) {
-        //TimeUnit.SECONDS.sleep(5);
         if (args.length != 3) {
             System.out.println("The parameter must have three");
             return;
@@ -25,7 +24,11 @@ public class dbload {
         }
         Write write = new Write (pageSize, dataFile);
         long start = System.currentTimeMillis ();
-        write.write ();
+        try {
+            write.write ();
+        } catch (Exception e) {
+            e.printStackTrace ();
+        }
         long stop = System.currentTimeMillis ();
         System.out.println ("The number of milliseconds to create the heap file is " + (stop - start) + "ms");
     }
