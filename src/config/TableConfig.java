@@ -48,6 +48,7 @@ public class TableConfig {
         defindTable.put ("BetweenStreet2", TableConfig.CHAR + "(30)");
         defindTable.put ("Side Of Street", TableConfig.INT + "(4)");
         defindTable.put ("In Violation", TableConfig.BOOLEAN + "(1)");
+        defindTable.put ("Vehicle Present", TableConfig.BOOLEAN + "(1)");
     }
 
     //加载元数据初始化表结构
