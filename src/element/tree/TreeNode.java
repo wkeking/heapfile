@@ -1,5 +1,7 @@
 package element.tree;
 
+import config.TableConfig;
+
 import java.io.Serializable;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
@@ -243,9 +245,10 @@ public class TreeNode implements Serializable {
             //如果该关键字键值已存在，则更新
             if (entries.get (i).getKey ().compareTo (key) == 0) {
                 //entries.get (i).setValue (obj);
-                List<Index> indices = (List<Index>) entries.get (i).getValue ();
-                indices.addAll ((List<Index>) obj);
-                entries.get (i).setValue (indices);
+                StringBuilder sb = new StringBuilder ((String) entries.get (i).getValue ());
+                sb.append (TableConfig.SEPARATOR);
+                sb.append ((String) obj);
+                entries.get (i).setValue (sb.toString ());
                 return;
                 //否则插入
             } else if (entries.get (i).getKey ().compareTo (key) > 0) {

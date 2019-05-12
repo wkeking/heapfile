@@ -2,19 +2,18 @@ package operate;
 
 import config.TableConfig;
 import element.records.Record;
-import element.tree.BTree;
+import element.tree.BPlusTree;
 import element.tree.Index;
 import utils.RecordUtil;
 
 import java.io.*;
 import java.text.ParseException;
-import java.util.List;
 
 public class Search {
     private String key;
     private int pageSize;
     private RandomAccessFile raf;
-    private BTree tree;
+    private ObjectInputStream ois;
 
     public Search(String key, int pageSize) throws IOException, ClassNotFoundException {
         TableConfig.initTableInfo();
@@ -22,27 +21,33 @@ public class Search {
         this.pageSize = pageSize;
         raf = new RandomAccessFile(TableConfig.PAGENAME + TableConfig.POINT + String.valueOf (pageSize), "r");
         File file = new File (TableConfig.INDEXNAME);
-        try (FileInputStream fis = new FileInputStream (file);
-             BufferedInputStream bis = new BufferedInputStream(fis, TableConfig.BUFFERSIZE);
-             ObjectInputStream ois = new ObjectInputStream (bis)) {
-            tree = (BTree) ois.readObject ();
-        } catch (Exception e) {
-            throw e;
-        }
+        FileInputStream fis = new FileInputStream (file);
+        BufferedInputStream bis = new BufferedInputStream(fis, TableConfig.BUFFERSIZE);
+        ois = new ObjectInputStream (bis);
     }
 
-    public void search() throws IOException, ParseException {
-        List<Index> indices = (List<Index>) tree.get (key);
-        for (Index index : indices) {
-            int pageId = index.getPageId ();
-            int recordId = index.getRecordId ();
-            byte[] recordByte = new byte[TableConfig.RECORDLENGTH];
-            raf.seek ((long) (pageId * pageSize + recordId * TableConfig.RECORDLENGTH));
-            raf.read(recordByte);
-            String[] records = RecordUtil.parseRecord(recordByte);
-            Record record = new Record (records, pageId + 1, recordId + 1);
-            System.out.println("Page ID:" + record.getPageId () + ",Record ID:" + record.getRecordId ());
-            System.out.println ("Record Value:" + record.toString ());
+    public void search() throws IOException, ParseException, ClassNotFoundException {
+        boolean flag = true;
+        while (flag) {
+            BPlusTree tree = (BPlusTree) ois.readObject ();
+            String values = (String) tree.get (key);
+            String[] indices = values.split (TableConfig.SEPARATOR);
+            for (String i : indices) {
+                Index index = new Index (i);
+                long pageId = index.getPageId ();
+                int recordId = index.getRecordId ();
+                byte[] recordByte = new byte[TableConfig.RECORDLENGTH];
+                raf.seek (pageId * pageSize + recordId * TableConfig.RECORDLENGTH);
+                raf.read(recordByte);
+                String[] records = RecordUtil.parseRecord(recordByte);
+                Record record = new Record (records, pageId + 1, recordId + 1);
+                System.out.println("Page ID:" + record.getPageId () + ",Record ID:" + record.getRecordId ());
+                System.out.println ("Record Value:" + record.toString ());
+            }
+            byte[] b = new byte[4];
+            if (ois.read (b) != 4) {
+                flag = false;
+            }
         }
     }
 
@@ -50,6 +55,9 @@ public class Search {
     public void close() throws IOException {
         if (raf != null) {
             raf.close ();
+        }
+        if (ois != null) {
+            ois.close ();
         }
     }
 }

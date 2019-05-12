@@ -24,11 +24,13 @@ public class TableConfig {
     public static final String BRACKET_A = ")";
     public static final String SEPARATOR = ",";
     public static final String POINT = ".";
+    public static final String NULL = " ";
     public static final int BUFFERSIZE = 1024 * 1024 * 2;//读取数据流文件缓冲区大小
 
     public static final String PAGENAME = "heap";
     public static final String INDEXNAME = "index";
     public static int RECORDLENGTH = 0;
+    public static int TREESIZE = 1000000;
     public static String KEYWORDS;//查找数据流文件的key
 
     public static final Map<String, String> defindTable = new LinkedHashMap<> ();//初始化表结构

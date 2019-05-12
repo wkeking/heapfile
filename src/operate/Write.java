@@ -6,22 +6,27 @@ import element.fields.FieldFactory;
 import element.fields.FieldType;
 import element.tree.BPlusTree;
 import element.tree.Index;
+import element.tree.TreeNode;
 
 import java.io.*;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Instant;
 import java.util.Map;
 
 public class Write {
     private int pageSize;
     private String dataFilePath;
     private long recordsNum;//记录总条数
+    private ObjectOutputStream oos;
 
-    public Write(int pageSize, String dataFilePath) {
+    public Write(int pageSize, String dataFilePath) throws Exception {
         this.pageSize = pageSize;
         this.dataFilePath = dataFilePath;
         recordsNum = 0L;
+        File file = new File (TableConfig.INDEXNAME);
+        FileOutputStream fos = new FileOutputStream (file);
+        BufferedOutputStream bos = new BufferedOutputStream (fos, TableConfig.BUFFERSIZE);
+        oos = new ObjectOutputStream (bos);
     }
 
     //读取元数据，写成固定格式的数据流文件
@@ -65,31 +70,42 @@ public class Write {
                 recordsNum ++;
 
                 //创建DeviceId ArrivalTime索引
-                List<Index> indices = new ArrayList<> ();
                 Index index = new Index (pageNum, pRecordNum - 1);
-                indices.add (index);
+                String value = index.serializ ();
                 String key = rs[0] + rs[1];
-                tree.insert (key, indices);
-            }
+                tree.insert (key, value);
 
-            //写索引文件
-            writeIndexFile (tree);
+                if (recordsNum > 0 && recordsNum % TableConfig.TREESIZE == 0) {
+                    //写索引文件
+                    writeIndexFile (tree);
+                    tree.clear ();
+                }
+            }
+            //writeIndexFile (tree);
             System.out.println ("The number of records loaded is " + recordsNum);
             System.out.println ("The number of pages saved is " + pageNum);
         } catch (Exception e) {
             throw e;
         }
+
+    }
+
+    public void close() {
+        if (oos != null) {
+            try {
+                oos.close ();
+            } catch (IOException e) {
+                e.printStackTrace ();
+            }
+        }
     }
 
     private void writeIndexFile(BPlusTree tree) throws IOException {
-        File file = new File (TableConfig.INDEXNAME);
-        try (FileOutputStream fos = new FileOutputStream (file);
-             BufferedOutputStream bos = new BufferedOutputStream (fos, TableConfig.BUFFERSIZE);
-             ObjectOutputStream oos = new ObjectOutputStream (bos)) {
-            oos.writeObject (tree);
-            System.out.println("Successfully written to the index file!");
-        } catch (IOException e) {
-            throw e;
-        }
+        TreeNode head = tree.getHead ();
+        System.out.println(head.isRoot ());
+        long l = Instant.now ().toEpochMilli ();
+        oos.writeObject (tree);
+        oos.flush ();
+        System.out.println("写树用时:" + (Instant.now ().toEpochMilli () - l) + "ms");
     }
 }

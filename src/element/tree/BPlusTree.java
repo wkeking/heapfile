@@ -52,4 +52,18 @@ public class BPlusTree implements BTree {
         head = root;
     }
 
+    public void clear() {
+        System.out.println("clear tree");
+        root = new TreeNode (true, true);
+        head = root;
+    }
+
+    @Override
+    public String toString() {
+        return "BPlusTree{" +
+                "root=" + root +
+                ", order=" + order +
+                ", head=" + head +
+                '}';
+    }
 }
