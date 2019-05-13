@@ -5,8 +5,8 @@ import config.TableConfig;
 import java.io.Serializable;
 
 public class Index implements Serializable {
-    private long pageId;
-    private int recordId;
+    private Long pageId;
+    private Integer recordId;
 
     public Index(long pageId, int recordId) {
         this.pageId = pageId;
@@ -14,7 +14,6 @@ public class Index implements Serializable {
     }
 
     public Index(String serializ) {
-        System.out.println(serializ);
         String[] split = serializ.split (TableConfig.NULL);
         pageId = Long.parseLong (split[0]);
         recordId = Integer.parseInt (split[1]);

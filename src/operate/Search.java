@@ -7,7 +7,7 @@ import element.tree.Index;
 import utils.RecordUtil;
 
 import java.io.*;
-import java.text.ParseException;
+import java.time.Instant;
 
 public class Search {
     private String key;
@@ -15,37 +15,41 @@ public class Search {
     private RandomAccessFile raf;
     private ObjectInputStream ois;
 
-    public Search(String key, int pageSize) throws IOException, ClassNotFoundException {
+    public Search(String key, int pageSize) throws IOException {
         TableConfig.initTableInfo();
         this.key = key;
         this.pageSize = pageSize;
         raf = new RandomAccessFile(TableConfig.PAGENAME + TableConfig.POINT + String.valueOf (pageSize), "r");
         File file = new File (TableConfig.INDEXNAME);
         FileInputStream fis = new FileInputStream (file);
-        BufferedInputStream bis = new BufferedInputStream(fis, TableConfig.BUFFERSIZE);
+        BufferedInputStream bis = new BufferedInputStream(fis, TableConfig.TBUFFERSIZE);
         ois = new ObjectInputStream (bis);
     }
 
-    public void search() throws IOException, ParseException, ClassNotFoundException {
+    public void search() {
         boolean flag = true;
         while (flag) {
-            BPlusTree tree = (BPlusTree) ois.readObject ();
-            String values = (String) tree.get (key);
-            String[] indices = values.split (TableConfig.SEPARATOR);
-            for (String i : indices) {
-                Index index = new Index (i);
-                long pageId = index.getPageId ();
-                int recordId = index.getRecordId ();
-                byte[] recordByte = new byte[TableConfig.RECORDLENGTH];
-                raf.seek (pageId * pageSize + recordId * TableConfig.RECORDLENGTH);
-                raf.read(recordByte);
-                String[] records = RecordUtil.parseRecord(recordByte);
-                Record record = new Record (records, pageId + 1, recordId + 1);
-                System.out.println("Page ID:" + record.getPageId () + ",Record ID:" + record.getRecordId ());
-                System.out.println ("Record Value:" + record.toString ());
-            }
-            byte[] b = new byte[4];
-            if (ois.read (b) != 4) {
+            try {
+                long l = Instant.now ().toEpochMilli ();
+                BPlusTree<String, String> tree = (BPlusTree) ois.readObject ();
+                System.out.println("读树用时:" + (Instant.now ().toEpochMilli () - l) + "ms");
+                String values = tree.search (key);
+                if (values != null) {
+                    String[] indices = values.split (TableConfig.SEPARATOR);
+                    for (String i : indices) {
+                        Index index = new Index (i);
+                        long pageId = index.getPageId ();
+                        int recordId = index.getRecordId ();
+                        byte[] recordByte = new byte[TableConfig.RECORDLENGTH];
+                        raf.seek (pageId * pageSize + recordId * TableConfig.RECORDLENGTH);
+                        raf.read(recordByte);
+                        String[] records = RecordUtil.parseRecord(recordByte);
+                        Record record = new Record (records, pageId + 1, recordId + 1);
+                        System.out.println("Page ID:" + record.getPageId () + ",Record ID:" + record.getRecordId ());
+                        System.out.println ("Record Value:" + record.toString ());
+                    }
+                }
+            } catch (Exception e) {
                 flag = false;
             }
         }

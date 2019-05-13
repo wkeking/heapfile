@@ -6,7 +6,6 @@ import element.fields.FieldFactory;
 import element.fields.FieldType;
 import element.tree.BPlusTree;
 import element.tree.Index;
-import element.tree.TreeNode;
 
 import java.io.*;
 import java.text.ParseException;
@@ -14,6 +13,7 @@ import java.time.Instant;
 import java.util.Map;
 
 public class Write {
+    private static int i = 1;
     private int pageSize;
     private String dataFilePath;
     private long recordsNum;//记录总条数
@@ -25,7 +25,7 @@ public class Write {
         recordsNum = 0L;
         File file = new File (TableConfig.INDEXNAME);
         FileOutputStream fos = new FileOutputStream (file);
-        BufferedOutputStream bos = new BufferedOutputStream (fos, TableConfig.BUFFERSIZE);
+        BufferedOutputStream bos = new BufferedOutputStream (fos, TableConfig.TBUFFERSIZE);
         oos = new ObjectOutputStream (bos);
     }
 
@@ -33,7 +33,7 @@ public class Write {
     public void write() throws IOException, ParseException {
         String heapPath = TableConfig.PAGENAME + "." + pageSize;
         File file = new File (heapPath);
-        BPlusTree tree = new BPlusTree (8);
+        BPlusTree<String, String> tree = new BPlusTree ();
         try (FileReader fr = new FileReader (dataFilePath);
              BufferedReader lnr = new BufferedReader(fr, TableConfig.BUFFERSIZE);
              FileOutputStream fos = new FileOutputStream (file);
@@ -78,10 +78,10 @@ public class Write {
                 if (recordsNum > 0 && recordsNum % TableConfig.TREESIZE == 0) {
                     //写索引文件
                     writeIndexFile (tree);
-                    tree.clear ();
+                    tree = new BPlusTree ();
                 }
             }
-            //writeIndexFile (tree);
+            writeIndexFile (tree);
             System.out.println ("The number of records loaded is " + recordsNum);
             System.out.println ("The number of pages saved is " + pageNum);
         } catch (Exception e) {
@@ -101,11 +101,10 @@ public class Write {
     }
 
     private void writeIndexFile(BPlusTree tree) throws IOException {
-        TreeNode head = tree.getHead ();
-        System.out.println(head.isRoot ());
         long l = Instant.now ().toEpochMilli ();
         oos.writeObject (tree);
         oos.flush ();
-        System.out.println("写树用时:" + (Instant.now ().toEpochMilli () - l) + "ms");
+        oos.reset ();
+        System.out.println(i ++ + "写树用时:" + (Instant.now ().toEpochMilli () - l) + "ms");
     }
 }
