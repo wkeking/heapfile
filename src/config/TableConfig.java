@@ -31,7 +31,7 @@ public class TableConfig {
     public static final String PAGENAME = "heap";
     public static final String INDEXNAME = "index";
     public static int RECORDLENGTH = 0;
-    public static int TREESIZE = 100000;
+    public static int TREESIZE = 80000;
     public static String KEYWORDS;//查找数据流文件的key
 
     public static final Map<String, String> defindTable = new LinkedHashMap<> ();//初始化表结构
