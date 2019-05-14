@@ -9,7 +9,6 @@ import element.tree.Index;
 
 import java.io.*;
 import java.text.ParseException;
-import java.time.Instant;
 import java.util.Map;
 
 public class Write {
@@ -101,10 +100,8 @@ public class Write {
     }
 
     private void writeIndexFile(BPlusTree tree) throws IOException {
-        long l = Instant.now ().toEpochMilli ();
         oos.writeObject (tree);
         oos.flush ();
         oos.reset ();
-        System.out.println(i ++ + "写树用时:" + (Instant.now ().toEpochMilli () - l) + "ms");
     }
 }

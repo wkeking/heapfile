@@ -13,21 +13,21 @@ import java.util.Queue;
 
 public class BPlusTree<K extends Comparable<? super K>, V> implements Serializable {
 
-    private static final int DEFAULT_BRANCHING_FACTOR = 128;
+    private static final int DEFAULT_FACTOR = 128;
 
-    private int branchingFactor;
+    private int factor;
 
     private Node root;
 
     public BPlusTree() {
-        this(DEFAULT_BRANCHING_FACTOR);
+        this(DEFAULT_FACTOR);
     }
 
-    public BPlusTree(int branchingFactor) {
-        if (branchingFactor <= 2)
+    public BPlusTree(int factor) {
+        if (factor <= 2)
             throw new IllegalArgumentException("Illegal branching factor: "
-                    + branchingFactor);
-        this.branchingFactor = branchingFactor;
+                    + factor);
+        this.factor = factor;
         root = new LeafNode();
     }
 
@@ -86,8 +86,6 @@ public class BPlusTree<K extends Comparable<? super K>, V> implements Serializab
 
         abstract boolean isOverflow();
 
-        abstract boolean isUnderflow();
-
         public String toString() {
             return keys.toString();
         }
@@ -144,12 +142,7 @@ public class BPlusTree<K extends Comparable<? super K>, V> implements Serializab
 
         @Override
         boolean isOverflow() {
-            return children.size() > branchingFactor;
-        }
-
-        @Override
-        boolean isUnderflow() {
-            return children.size() < (branchingFactor + 1) / 2;
+            return children.size() > factor;
         }
 
         Node getChild(K key) {
@@ -230,12 +223,7 @@ public class BPlusTree<K extends Comparable<? super K>, V> implements Serializab
 
         @Override
         boolean isOverflow() {
-            return values.size() > branchingFactor - 1;
-        }
-
-        @Override
-        boolean isUnderflow() {
-            return values.size() < branchingFactor / 2;
+            return values.size() > factor - 1;
         }
     }
 }

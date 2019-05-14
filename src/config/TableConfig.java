@@ -26,7 +26,7 @@ public class TableConfig {
     public static final String POINT = ".";
     public static final String NULL = " ";
     public static final int BUFFERSIZE = 1024 * 1024 * 2;//读取数据流文件缓冲区大小
-    public static final int TBUFFERSIZE = 1024 * 1024 * 32;
+    public static final int TBUFFERSIZE = 1024 * 1024 * 16;
 
     public static final String PAGENAME = "heap";
     public static final String INDEXNAME = "index";

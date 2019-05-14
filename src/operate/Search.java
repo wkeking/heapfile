@@ -7,7 +7,6 @@ import element.tree.Index;
 import utils.RecordUtil;
 
 import java.io.*;
-import java.time.Instant;
 
 public class Search {
     private String key;
@@ -30,9 +29,7 @@ public class Search {
         boolean flag = true;
         while (flag) {
             try {
-                long l = Instant.now ().toEpochMilli ();
                 BPlusTree<String, String> tree = (BPlusTree) ois.readObject ();
-                System.out.println("读树用时:" + (Instant.now ().toEpochMilli () - l) + "ms");
                 String values = tree.search (key);
                 if (values != null) {
                     String[] indices = values.split (TableConfig.SEPARATOR);
