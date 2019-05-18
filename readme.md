@@ -29,8 +29,17 @@ B+Tree由BTree引申而来，请参考教科书...
 由于本次加入了索引文件的写入。具体命令：
 java dbload -p pagesize 元数据路径
 ### 遍历查询命令
-本次遍历查询命令与一期相同：
+- 本次遍历精确（equality）查询命令与一期相同：
 java dbquery 查找的字符串 pagesize
+例：java dbquery "1861901/04/2017 08:10:06 PM" 10000
+- 本次遍历区间（range）查询命令：
+java dbquery 查找的字符串1 查找的字符串2 pagesize
+例：java dbquery "1718510/10/2017 09:56:59 PM" "1719007/27/2017 11:25:02 AM" 10000
 ### 索引查询命令
-命令：
-java dbsearch 查找的字符串 pagesize 
+- 本次索引精确（equality）查询命令：
+java dbsearch 查找的字符串 pagesize
+例：java dbsearch "1861901/04/2017 08:10:06 PM" 10000
+- 本次索引区间（range）查询命令： 
+java dbsearch 查找的字符串1 查找的字符串2 pagesize 
+例：java dbsearch "1718510/10/2017 09:56:59 PM" "1719007/27/2017 11:25:02 AM" 10000
+

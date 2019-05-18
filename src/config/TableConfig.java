@@ -33,6 +33,7 @@ public class TableConfig {
     public static int RECORDLENGTH = 0;
     public static int TREESIZE = 80000;
     public static String KEYWORDS;//查找数据流文件的key
+    public static String[] RANGS_KEYS = new String[2];//区间key
 
     public static final Map<String, String> defindTable = new LinkedHashMap<> ();//初始化表结构
     public static final List<Map<String, Object>> tableInfo = new ArrayList<> ();//加载元数据对比表头，固定字段顺序

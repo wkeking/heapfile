@@ -1,5 +1,6 @@
 package operate;
 
+import config.Condition;
 import config.TableConfig;
 import element.fields.FieldType;
 import element.pages.Page;
@@ -58,7 +59,7 @@ public class Load {
     }
 
     //对传入的页进行解析，查找指定的记录
-    public void query(Page page) throws IOException, ParseException {
+    public void query(Page page, Condition condition) throws IOException, ParseException {
         byte[] recordByte = new byte[TableConfig.RECORDLENGTH];
         raf.seek ((page.getPageId () - 1) * pageSize);
         for (int i = 0; i < page.getRecordNum (); i++) {
@@ -66,8 +67,21 @@ public class Load {
             String[] records = RecordUtil.parseRecord(recordByte);
             Record record = new Record (records, page.getPageId (), i + 1);
             String result = record.getFields ()[0] + record.getFields ()[1];
-            if (TableConfig.KEYWORDS.equals (result))
-                page.getList ().add (record);
+            switch (condition){
+                case EQUALITY:
+                    if (TableConfig.KEYWORDS.compareTo (result) == 0)
+                        page.getList ().add (record);
+                    break;
+                case RANGE:
+                    if (result.compareTo (TableConfig.RANGS_KEYS[0]) == 0 || result.compareTo (TableConfig.RANGS_KEYS[1]) == 0) {
+                        page.getList ().add (record);
+                        break;
+                    }
+                    if (result.compareTo (TableConfig.RANGS_KEYS[0]) > 0 && result.compareTo (TableConfig.RANGS_KEYS[1]) < 0) {
+                        page.getList ().add (record);
+                    }
+                    break;
+            }
         }
     }
 }

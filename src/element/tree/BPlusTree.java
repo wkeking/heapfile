@@ -13,6 +13,10 @@ import java.util.Queue;
 
 public class BPlusTree<K extends Comparable<? super K>, V> implements Serializable {
 
+    public static enum RangePolicy {
+        EXCLUSIVE, INCLUSIVE
+    }
+
     private static final int DEFAULT_FACTOR = 128;
 
     private int factor;
@@ -33,6 +37,11 @@ public class BPlusTree<K extends Comparable<? super K>, V> implements Serializab
 
     public V search(K key) {
         return root.getValue(key);
+    }
+
+    public List<V> searchRange(K key1, K key2,
+                               RangePolicy policy) {
+        return root.getRange(key1, key2, policy);
     }
 
     public void insert(K key, V value) {
@@ -82,6 +91,11 @@ public class BPlusTree<K extends Comparable<? super K>, V> implements Serializab
 
         abstract K getFirstLeafKey();
 
+        abstract List<V> getRange(K key1, K key2,
+                                  RangePolicy policy);
+
+        abstract void merge(Node sibling);
+
         abstract Node split();
 
         abstract boolean isOverflow();
@@ -125,6 +139,21 @@ public class BPlusTree<K extends Comparable<? super K>, V> implements Serializab
         @Override
         K getFirstLeafKey() {
             return children.get(0).getFirstLeafKey();
+        }
+
+        @Override
+        List<V> getRange(K key1, K key2,
+                         RangePolicy policy) {
+            List<V> range = getChild (key1).getRange (key1, key2, policy);
+            return range;
+        }
+
+        @Override
+        void merge(Node sibling) {
+            InternalNode node = (InternalNode) sibling;
+            keys.add(node.getFirstLeafKey());
+            keys.addAll(node.keys);
+            children.addAll(node.children);
         }
 
         @Override
@@ -204,6 +233,48 @@ public class BPlusTree<K extends Comparable<? super K>, V> implements Serializab
         @Override
         K getFirstLeafKey() {
             return keys.get(0);
+        }
+
+        @Override
+        List<V> getRange(K key1, K key2, RangePolicy policy) {
+            List<V> result = new LinkedList<V> ();
+            LeafNode node = this;
+            while (node != null) {
+                if (node.keys.get (node.keys.size () - 1).compareTo (key2) < 0) {
+                    result.addAll (node.values);
+                } else {
+                    Iterator<K> kIt = node.keys.iterator();
+                    Iterator<V> vIt = node.values.iterator();
+                    while (kIt.hasNext()) {
+                        K key = kIt.next();
+                        V value = vIt.next();
+                        int cmp1 = key.compareTo(key1);
+                        int cmp2 = key.compareTo(key2);
+                        switch (policy) {
+                            case INCLUSIVE:
+                                if (cmp1 >= 0 && cmp2 <= 0)
+                                    result.add (value);
+                                else return result;
+                                break;
+                            case EXCLUSIVE:
+                                if (cmp1 > 0 && cmp2 < 0)
+                                    result.add (value);
+                                else return result;
+                                break;
+                        }
+                    }
+                }
+                node = node.next;
+            }
+            return result;
+        }
+
+        @Override
+        void merge(Node sibling) {
+            LeafNode node = (LeafNode) sibling;
+            keys.addAll(node.keys);
+            values.addAll(node.values);
+            next = node.next;
         }
 
         @Override
