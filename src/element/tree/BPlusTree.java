@@ -237,6 +237,7 @@ public class BPlusTree<K extends Comparable<? super K>, V> implements Serializab
 
         @Override
         List<V> getRange(K key1, K key2, RangePolicy policy) {
+            long l1 = System.currentTimeMillis ();
             List<V> result = new LinkedList<V> ();
             LeafNode node = this;
             while (node != null) {

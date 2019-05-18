@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.util.List;
 
 public class Search {
+    //public static long time = 0L;
     private long total = 0L;
     private int pageSize;
     private RandomAccessFile raf;
@@ -40,7 +41,9 @@ public class Search {
                     case RANGE:
                         List<String> results = tree.searchRange (TableConfig.RANGS_KEYS[0], TableConfig.RANGS_KEYS[1], BPlusTree.RangePolicy.INCLUSIVE);
                         for (String result : results) {
+                            //long l = System.currentTimeMillis ();
                             hit (result);
+                            //time += System.currentTimeMillis () - l;
                         }
                         break;
                 }

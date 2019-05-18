@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f923dc03-0cc3-47af-9199-4401230be238" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/config/Condition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/TableConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/TableConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dbquery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dbquery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dbsearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dbsearch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/element/tree/BPlusTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/element/tree/BPlusTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/operate/Load.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/operate/Load.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/operate/Search.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/operate/Search.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -32,23 +27,25 @@
       <file leaf-file-name="dbsearch.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dbsearch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="68" column="58" selection-start-line="68" selection-start-column="58" selection-end-line="68" selection-end-column="58" />
+            <state relative-caret-position="-75">
+              <caret line="67" column="55" selection-start-line="67" selection-start-column="55" selection-end-line="67" selection-end-column="55" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BPlusTree.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BPlusTree.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/element/tree/BPlusTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2160">
-              <caret line="145" column="46" selection-start-line="145" selection-start-column="46" selection-end-line="145" selection-end-column="46" />
+            <state relative-caret-position="-4644">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3117#3118#0" expanded="true" />
                 <element signature="e#3175#3176#0" expanded="true" />
                 <element signature="e#6913#6914#0" expanded="true" />
                 <element signature="e#6955#6956#0" expanded="true" />
+                <element signature="e#9377#9378#0" expanded="true" />
+                <element signature="e#9434#9435#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -63,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Search.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Search.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/operate/Search.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="40" column="90" selection-start-line="40" selection-start-column="90" selection-end-line="40" selection-end-column="90" />
+            <state relative-caret-position="162">
+              <caret line="39" column="30" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -88,8 +85,8 @@
         <entry file="file://$PROJECT_DIR$/readme.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="332">
-                <caret line="43" column="16" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="81" />
+              <first_editor relative-caret-position="503">
+                <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
               </first_editor>
               <second_editor />
             </state>
@@ -180,10 +177,10 @@
         <option value="$PROJECT_DIR$/src/config/TableConfig.java" />
         <option value="$PROJECT_DIR$/src/operate/Load.java" />
         <option value="$PROJECT_DIR$/src/dbquery.java" />
-        <option value="$PROJECT_DIR$/src/operate/Search.java" />
         <option value="$PROJECT_DIR$/readme.md" />
-        <option value="$PROJECT_DIR$/src/dbsearch.java" />
         <option value="$PROJECT_DIR$/src/element/tree/BPlusTree.java" />
+        <option value="$PROJECT_DIR$/src/dbsearch.java" />
+        <option value="$PROJECT_DIR$/src/operate/Search.java" />
       </list>
     </option>
   </component>
@@ -323,7 +320,7 @@
     <configuration name="dbsearch" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dbsearch" />
       <module name="heapfile" />
-      <option name="PROGRAM_PARAMETERS" value="&quot;1718510/10/2017 09:56:59 PM&quot; &quot;1719007/27/2017 11:25:02 AM&quot; 10000" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;2091905/21/2017 10:51:06 PM&quot; 10000" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -413,7 +410,7 @@
       <workItem from="1557802911745" duration="316000" />
       <workItem from="1557816784269" duration="1331000" />
       <workItem from="1557819000917" duration="227000" />
-      <workItem from="1558155553261" duration="12907000" />
+      <workItem from="1558155553261" duration="16520000" />
     </task>
     <task id="LOCAL-00001" summary="修改">
       <created>1553008916296</created>
@@ -569,15 +566,28 @@
       <option name="project" value="LOCAL" />
       <updated>1557818843173</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="增加区间检索">
+      <created>1558168791114</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1558168791114</updated>
+    </task>
+    <task id="LOCAL-00024" summary="增加区间检索1">
+      <created>1558170061964</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1558170061964</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153857000" />
+    <option name="totallyTimeSpent" value="157470000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -588,7 +598,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5026652" side_tool="true" weight="0.46024635" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49733475" visible="true" weight="0.0" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49733475" visible="true" weight="0.4568869" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49946696" weight="0.0" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
@@ -666,7 +676,9 @@
     <MESSAGE value="二期说明2:readme.md" />
     <MESSAGE value="二期说明3:readme.md" />
     <MESSAGE value="二期说明4:readme.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="二期说明4:readme.md" />
+    <MESSAGE value="增加区间检索" />
+    <MESSAGE value="增加区间检索1" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加区间检索1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -865,13 +877,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/row.csv">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="163">
-          <caret line="19" column="28" lean-forward="true" selection-start-line="19" selection-end-line="19" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/config/TableConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="401">
@@ -886,6 +891,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="503">
+            <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/dbquery.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-351">
@@ -893,43 +908,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="332">
-            <caret line="43" column="16" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="81" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dbsearch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="68" column="58" selection-start-line="68" selection-start-column="58" selection-end-line="68" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/operate/Search.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="40" column="90" selection-start-line="40" selection-start-column="90" selection-end-line="40" selection-end-column="90" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-75">
+          <caret line="67" column="55" selection-start-line="67" selection-start-column="55" selection-end-line="67" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/element/tree/BPlusTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2160">
-          <caret line="145" column="46" selection-start-line="145" selection-start-column="46" selection-end-line="145" selection-end-column="46" />
+        <state relative-caret-position="-4644">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3117#3118#0" expanded="true" />
             <element signature="e#3175#3176#0" expanded="true" />
             <element signature="e#6913#6914#0" expanded="true" />
             <element signature="e#6955#6956#0" expanded="true" />
+            <element signature="e#9377#9378#0" expanded="true" />
+            <element signature="e#9434#9435#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/row.csv">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="271">
+          <caret line="74" column="28" selection-start-line="74" selection-end-line="74" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/operate/Search.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="39" column="30" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
