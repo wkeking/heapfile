@@ -1,6 +1,5 @@
 import config.Condition;
 import config.TableConfig;
-import element.tree.BPlusTree;
 import operate.Search;
 
 import java.io.IOException;
@@ -66,7 +65,6 @@ public class dbsearch {
             search = new Search (pageSize);
             search.search (condition);
             long stop = System.currentTimeMillis ();
-            System.out.println("time is " + BPlusTree.time);
             System.out.println("The number of milliseconds to search the heap file is " + (stop - start) + "ms");
 
         } catch (Exception e) {
