@@ -237,33 +237,22 @@ public class BPlusTree<K extends Comparable<? super K>, V> implements Serializab
 
         @Override
         List<V> getRange(K key1, K key2, RangePolicy policy) {
-            long l1 = System.currentTimeMillis ();
-            List<V> result = new LinkedList<V> ();
+            List<V> result = new LinkedList<V>();
             LeafNode node = this;
             while (node != null) {
-                if (node.keys.get (node.keys.size () - 1).compareTo (key2) < 0) {
-                    result.addAll (node.values);
-                } else {
-                    Iterator<K> kIt = node.keys.iterator();
-                    Iterator<V> vIt = node.values.iterator();
-                    while (kIt.hasNext()) {
-                        K key = kIt.next();
-                        V value = vIt.next();
-                        int cmp1 = key.compareTo(key1);
-                        int cmp2 = key.compareTo(key2);
-                        switch (policy) {
-                            case INCLUSIVE:
-                                if (cmp1 >= 0 && cmp2 <= 0)
-                                    result.add (value);
-                                else return result;
-                                break;
-                            case EXCLUSIVE:
-                                if (cmp1 > 0 && cmp2 < 0)
-                                    result.add (value);
-                                else return result;
-                                break;
-                        }
-                    }
+                Iterator<K> kIt = node.keys.iterator();
+                Iterator<V> vIt = node.values.iterator();
+                while (kIt.hasNext()) {
+                    K key = kIt.next();
+                    V value = vIt.next();
+                    int cmp1 = key.compareTo(key1);
+                    int cmp2 = key.compareTo(key2);
+                    if (((policy == RangePolicy.EXCLUSIVE && cmp1 > 0) || (policy == RangePolicy.INCLUSIVE && cmp1 >= 0))
+                            && ((policy == RangePolicy.EXCLUSIVE && cmp2 < 0) || (policy == RangePolicy.INCLUSIVE && cmp2 <= 0)))
+                        result.add(value);
+                    else if ((policy == RangePolicy.EXCLUSIVE && cmp2 >= 0)
+                            || (policy == RangePolicy.INCLUSIVE && cmp2 > 0))
+                        return result;
                 }
                 node = node.next;
             }

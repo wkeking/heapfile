@@ -73,12 +73,8 @@ public class Load {
                         page.getList ().add (record);
                     break;
                 case RANGE:
-                    if (result.compareTo (TableConfig.RANGS_KEYS[0]) == 0 || result.compareTo (TableConfig.RANGS_KEYS[1]) == 0) {
-                        page.getList ().add (record);
-                        break;
-                    }
-                    if (result.compareTo (TableConfig.RANGS_KEYS[0]) > 0 && result.compareTo (TableConfig.RANGS_KEYS[1]) < 0) {
-                        page.getList ().add (record);
+                    if (TableConfig.RANGS_KEYS[1].compareTo(result) >= 0 && TableConfig.RANGS_KEYS[0].compareTo(result) <= 0) {
+                        page.getList().add(record);
                     }
                     break;
             }
