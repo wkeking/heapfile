@@ -73,7 +73,6 @@ public class Write {
                 Index index = new Index (pageNum, pRecordNum - 1);
                 String value = index.serializ ();
                 String key = rs[0] + DateUtil.regex (rs[1]);
-                System.out.println(key);
                 tree.insert (key, value);
 
                 if (recordsNum > 0 && recordsNum % TableConfig.TREESIZE == 0) {
