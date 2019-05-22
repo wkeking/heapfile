@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f923dc03-0cc3-47af-9199-4401230be238" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/element/tree/BPlusTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/element/tree/BPlusTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Write.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Write.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/operate/Write.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="75" column="40" lean-forward="true" selection-start-line="75" selection-start-column="40" selection-end-line="75" selection-end-column="40" />
+            <state relative-caret-position="242">
+              <caret line="74" column="60" selection-start-line="74" selection-start-column="60" selection-end-line="74" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -42,7 +43,7 @@
       <file leaf-file-name="Load.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/operate/Load.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1809">
+            <state relative-caret-position="1080">
               <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
             </state>
           </provider>
@@ -66,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BPlusTree.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BPlusTree.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/element/tree/BPlusTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1857">
-              <caret line="136" column="41" selection-start-line="136" selection-start-column="41" selection-end-line="136" selection-end-column="41" />
+            <state relative-caret-position="167">
+              <caret line="50" column="35" selection-start-line="50" selection-start-column="35" selection-end-line="50" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#796#797#0" expanded="true" />
@@ -204,11 +205,11 @@
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/utils/DateUtil.java" />
         <option value="$PROJECT_DIR$/src/operate/Load.java" />
-        <option value="$PROJECT_DIR$/src/operate/Write.java" />
         <option value="$PROJECT_DIR$/src/operate/Search.java" />
         <option value="$PROJECT_DIR$/src/utils/CompareUtil.java" />
         <option value="$PROJECT_DIR$/src/config/TableConfig.java" />
         <option value="$PROJECT_DIR$/src/element/tree/BPlusTree.java" />
+        <option value="$PROJECT_DIR$/src/operate/Write.java" />
       </list>
     </option>
   </component>
@@ -423,7 +424,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.dbload">
+  <component name="RunManager" selected="Application.dbquery">
     <configuration name="CompareUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="utils.CompareUtil" />
       <module name="heapfile" />
@@ -514,8 +515,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.dbload" />
         <item itemvalue="Application.dbsearch" />
+        <item itemvalue="Application.dbload" />
         <item itemvalue="Application.dbquery" />
         <item itemvalue="Application.DateUtil" />
         <item itemvalue="Application.CompareUtil" />
@@ -734,15 +735,28 @@
       <option name="project" value="LOCAL" />
       <updated>1558516682489</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="删除toString方法">
+      <created>1558517342236</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1558517342236</updated>
+    </task>
+    <task id="LOCAL-00027" summary="删除无用打印">
+      <created>1558517466394</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1558517466394</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185380000" />
+    <option name="totallyTimeSpent" value="186500000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -754,7 +768,7 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49946696" weight="0.0" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733475" visible="true" weight="0.0" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733475" visible="true" weight="0.45016798" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -855,7 +869,9 @@
     <MESSAGE value="增加区间检索" />
     <MESSAGE value="增加区间检索1" />
     <MESSAGE value="修改bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改bug" />
+    <MESSAGE value="删除toString方法" />
+    <MESSAGE value="删除无用打印" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除无用打印" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1084,20 +1100,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/operate/Write.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="75" column="40" lean-forward="true" selection-start-line="75" selection-start-column="40" selection-end-line="75" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/operate/Load.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1809">
-          <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/DateUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -1107,8 +1109,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/element/tree/BPlusTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1857">
-          <caret line="136" column="41" selection-start-line="136" selection-start-column="41" selection-end-line="136" selection-end-column="41" />
+        <state relative-caret-position="167">
+          <caret line="50" column="35" selection-start-line="50" selection-start-column="35" selection-end-line="50" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#796#797#0" expanded="true" />
@@ -1116,6 +1118,20 @@
             <element signature="e#9538#9539#0" expanded="true" />
             <element signature="e#9595#9596#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/operate/Load.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/operate/Write.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="74" column="60" selection-start-line="74" selection-start-column="60" selection-end-line="74" selection-end-column="60" />
         </state>
       </provider>
     </entry>
