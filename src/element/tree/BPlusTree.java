@@ -33,43 +33,12 @@ public class BPlusTree<K extends Comparable<? super K>, V> implements Serializab
         return root.getValue(key);
     }
 
-    public List<V> searchRange(K key1, K key2,
-                               RangePolicy policy) {
+    public List<V> searchRange(K key1, K key2, RangePolicy policy) {
         return root.getRange(key1, key2, policy);
     }
 
     public void insert(K key, V value) {
         root.insertValue(key, value);
-    }
-
-    public String toString() {
-        Queue<List<Node>> queue = new LinkedList<List<Node>>();
-        queue.add(Arrays.asList(root));
-        StringBuilder sb = new StringBuilder();
-        while (!queue.isEmpty()) {
-            Queue<List<Node>> nextQueue = new LinkedList<List<Node>>();
-            while (!queue.isEmpty()) {
-                List<Node> nodes = queue.remove();
-                sb.append('{');
-                Iterator<Node> it = nodes.iterator();
-                while (it.hasNext()) {
-                    Node node = it.next();
-                    sb.append(node.toString());
-                    if (it.hasNext())
-                        sb.append(", ");
-                    if (node instanceof BPlusTree.InternalNode)
-                        nextQueue.add(((InternalNode) node).children);
-                }
-                sb.append('}');
-                if (!queue.isEmpty())
-                    sb.append(", ");
-                else
-                    sb.append('\n');
-            }
-            queue = nextQueue;
-        }
-
-        return sb.toString();
     }
 
     private abstract class Node implements Serializable {
@@ -85,8 +54,7 @@ public class BPlusTree<K extends Comparable<? super K>, V> implements Serializab
 
         abstract K getFirstLeafKey();
 
-        abstract List<V> getRange(K key1, K key2,
-                                  RangePolicy policy);
+        abstract List<V> getRange(K key1, K key2, RangePolicy policy);
 
         abstract void merge(Node sibling);
 
@@ -136,8 +104,7 @@ public class BPlusTree<K extends Comparable<? super K>, V> implements Serializab
         }
 
         @Override
-        List<V> getRange(K key1, K key2,
-                         RangePolicy policy) {
+        List<V> getRange(K key1, K key2, RangePolicy policy) {
             List<V> range = getChild (key1).getRange (key1, key2, policy);
             return range;
         }
