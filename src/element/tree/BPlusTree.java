@@ -3,13 +3,7 @@ package element.tree;
 import config.TableConfig;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class BPlusTree<K extends Comparable<? super K>, V> implements Serializable {
 
@@ -245,14 +239,18 @@ public class BPlusTree<K extends Comparable<? super K>, V> implements Serializab
                 while (kIt.hasNext()) {
                     K key = kIt.next();
                     V value = vIt.next();
-                    int cmp1 = key.compareTo(key1);
-                    int cmp2 = key.compareTo(key2);
-                    if (((policy == RangePolicy.EXCLUSIVE && cmp1 > 0) || (policy == RangePolicy.INCLUSIVE && cmp1 >= 0))
-                            && ((policy == RangePolicy.EXCLUSIVE && cmp2 < 0) || (policy == RangePolicy.INCLUSIVE && cmp2 <= 0)))
-                        result.add(value);
-                    else if ((policy == RangePolicy.EXCLUSIVE && cmp2 >= 0)
-                            || (policy == RangePolicy.INCLUSIVE && cmp2 > 0))
-                        return result;
+                    int cmp1 = key.compareTo (key1);
+                    int cmp2 = key.compareTo (key2);
+                    switch (policy) {
+                        case EXCLUSIVE:
+                            if (cmp1 > 0 && cmp2 < 0) result.add (value);
+                            else if (cmp2 >= 0) return result;
+                            break;
+                        case INCLUSIVE:
+                            if (cmp1 >= 0 && cmp2 <= 0) result.add (value);
+                            else if (cmp2 > 0) return result;
+                            break;
+                    }
                 }
                 node = node.next;
             }

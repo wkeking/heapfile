@@ -5,6 +5,7 @@ import config.TableConfig;
 import element.fields.FieldType;
 import element.pages.Page;
 import element.records.Record;
+import utils.CompareUtil;
 import utils.RecordUtil;
 import utils.TypeUtil;
 
@@ -73,7 +74,7 @@ public class Load {
                         page.getList ().add (record);
                     break;
                 case RANGE:
-                    if (TableConfig.RANGS_KEYS[1].compareTo(result) >= 0 && TableConfig.RANGS_KEYS[0].compareTo(result) <= 0) {
+                    if (CompareUtil.compare (TableConfig.RANGS_KEYS[1], result) >= 0 && CompareUtil.compare (TableConfig.RANGS_KEYS[0], result) <= 0) {
                         page.getList().add(record);
                     }
                     break;

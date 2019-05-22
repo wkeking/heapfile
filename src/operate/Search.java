@@ -20,6 +20,8 @@ public class Search {
 
     public Search(int pageSize) throws IOException {
         TableConfig.initTableInfo();
+        TableConfig.initRangKeys();
+        TableConfig.initKeyWords();
         this.pageSize = pageSize;
         raf = new RandomAccessFile(TableConfig.PAGENAME + TableConfig.POINT + String.valueOf (pageSize), "r");
         File file = new File (TableConfig.INDEXNAME);
@@ -35,15 +37,13 @@ public class Search {
                 BPlusTree<String, String> tree = (BPlusTree) ois.readObject ();
                 switch (condition) {
                     case EQUALITY:
-                        String values = tree.search (TableConfig.KEYWORDS);
+                        String values = tree.search (TableConfig.I_KEYWORDS);
                         hit (values);
                         break;
                     case RANGE:
-                        List<String> results = tree.searchRange (TableConfig.RANGS_KEYS[0], TableConfig.RANGS_KEYS[1], BPlusTree.RangePolicy.INCLUSIVE);
+                        List<String> results = tree.searchRange (TableConfig.R_RANGS_KEYS[0], TableConfig.R_RANGS_KEYS[1], BPlusTree.RangePolicy.INCLUSIVE);
                         for (String result : results) {
-                            //long l = System.currentTimeMillis ();
                             hit (result);
-                            //time += System.currentTimeMillis () - l;
                         }
                         break;
                 }

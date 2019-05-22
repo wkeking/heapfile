@@ -1,7 +1,10 @@
 package config;
 
+import utils.CompareUtil;
+import utils.DateUtil;
 import utils.TypeUtil;
 
+import java.text.ParseException;
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -33,7 +36,9 @@ public class TableConfig {
     public static int RECORDLENGTH = 0;
     public static int TREESIZE = 80000;
     public static String KEYWORDS;//查找数据流文件的key
-    public static String[] RANGS_KEYS = new String[2];//区间key
+    public static String I_KEYWORDS;
+    public static String[] RANGS_KEYS = new String[2];//query区间key
+    public static String[] R_RANGS_KEYS = new String[2];
 
     public static final Map<String, String> defindTable = new LinkedHashMap<> ();//初始化表结构
     public static final List<Map<String, Object>> tableInfo = new ArrayList<> ();//加载元数据对比表头，固定字段顺序
@@ -66,6 +71,28 @@ public class TableConfig {
     //加载数据流文件初始化表结构
     public static void initTableInfo() {
         TableConfig.defindTable.forEach ((k, v) -> TableConfig.initTable (k, v));
+    }
+
+    public static void initRangKeys() {
+        if (RANGS_KEYS[0] == null || RANGS_KEYS[1] == null) return;
+        R_RANGS_KEYS[0] = parseKeyWord(RANGS_KEYS[0]);
+        R_RANGS_KEYS[1] = parseKeyWord(RANGS_KEYS[1]);
+    }
+
+    public static void initKeyWords() {
+        if (KEYWORDS == null) return;
+        I_KEYWORDS = parseKeyWord (KEYWORDS);
+    }
+
+    private static String parseKeyWord(String key) {
+        String[] split = key.split (NULL);
+        StringBuilder result = new StringBuilder (CompareUtil.parseId (split[0]));
+        try {
+            result.append (DateUtil.regex (CompareUtil.parseTime (split[0]) + NULL + split[1] + NULL + split[2]));
+        } catch (ParseException e) {
+            System.out.println("Date resolution error,Please enter the correct date");
+        }
+        return result.toString ();
     }
 
     private static void initTable(String fieldName, String attr) {

@@ -6,6 +6,7 @@ import element.fields.FieldFactory;
 import element.fields.FieldType;
 import element.tree.BPlusTree;
 import element.tree.Index;
+import utils.DateUtil;
 
 import java.io.*;
 import java.text.ParseException;
@@ -71,7 +72,8 @@ public class Write {
                 //创建DeviceId ArrivalTime索引
                 Index index = new Index (pageNum, pRecordNum - 1);
                 String value = index.serializ ();
-                String key = rs[0] + rs[1];
+                String key = rs[0] + DateUtil.regex (rs[1]);
+                System.out.println(key);
                 tree.insert (key, value);
 
                 if (recordsNum > 0 && recordsNum % TableConfig.TREESIZE == 0) {
