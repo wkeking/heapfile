@@ -4,6 +4,7 @@ import utils.CompareUtil;
 import utils.DateUtil;
 import utils.TypeUtil;
 
+import java.lang.management.ManagementFactory;
 import java.text.ParseException;
 import java.util.*;
 import java.util.stream.Stream;
@@ -43,6 +44,8 @@ public class TableConfig {
     public static final Map<String, String> defindTable = new LinkedHashMap<> ();//初始化表结构
     public static final List<Map<String, Object>> tableInfo = new ArrayList<> ();//加载元数据对比表头，固定字段顺序
 
+    public static boolean ISDEBUG = false;
+
     static {//表结构
         defindTable.put ("DeviceId", TableConfig.INT + "(4)");
         defindTable.put ("ArrivalTime", TableConfig.DATE + "(8)");
@@ -58,6 +61,15 @@ public class TableConfig {
         defindTable.put ("Side Of Street", TableConfig.INT + "(4)");
         defindTable.put ("In Violation", TableConfig.BOOLEAN + "(1)");
         defindTable.put ("Vehicle Present", TableConfig.BOOLEAN + "(1)");
+    }
+
+    static {
+        List<String> arguments = ManagementFactory.getRuntimeMXBean().getInputArguments();
+        for(String str : arguments) {
+            if(str.startsWith("-agentlib")) {
+                ISDEBUG = true;
+            }
+        }
     }
 
     //加载元数据初始化表结构

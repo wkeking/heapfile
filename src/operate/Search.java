@@ -6,13 +6,13 @@ import element.records.Record;
 import element.tree.BPlusTree;
 import element.tree.Index;
 import utils.RecordUtil;
+import utils.WriteUtil;
 
 import java.io.*;
 import java.text.ParseException;
 import java.util.List;
 
 public class Search {
-    //public static long time = 0L;
     private long total = 0L;
     private int pageSize;
     private RandomAccessFile raf;
@@ -69,6 +69,10 @@ public class Search {
                 Record record = new Record (records, pageId + 1, recordId + 1);
                 System.out.println("Page ID:" + record.getPageId () + ",Record ID:" + record.getRecordId ());
                 System.out.println ("Record Value:" + record.toString ());
+                if (TableConfig.ISDEBUG) {
+                    WriteUtil.write ("Page ID:" + record.getPageId () + ",Record ID:" + record.getRecordId ());
+                    WriteUtil.write ("Record Value:" + record.toString ());
+                }
                 total ++;
             }
         }

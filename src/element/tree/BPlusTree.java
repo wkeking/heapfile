@@ -71,8 +71,8 @@ public class BPlusTree<K extends Comparable<? super K>, V> implements Serializab
         List<Node> children;
 
         InternalNode() {
-            this.keys = new ArrayList<K>();
-            this.children = new ArrayList<Node>();
+            this.keys = new ArrayList<>();
+            this.children = new ArrayList<>();
         }
 
         @Override
@@ -158,8 +158,8 @@ public class BPlusTree<K extends Comparable<? super K>, V> implements Serializab
         LeafNode next;
 
         LeafNode() {
-            keys = new ArrayList<K>();
-            values = new ArrayList<V>();
+            keys = new ArrayList<>();
+            values = new ArrayList<>();
         }
 
         @Override
@@ -198,7 +198,7 @@ public class BPlusTree<K extends Comparable<? super K>, V> implements Serializab
 
         @Override
         List<V> getRange(K key1, K key2, RangePolicy policy) {
-            List<V> result = new LinkedList<V>();
+            List<V> result = new LinkedList<>();
             LeafNode node = this;
             while (node != null) {
                 Iterator<K> kIt = node.keys.iterator();

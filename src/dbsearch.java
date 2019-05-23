@@ -1,11 +1,16 @@
 import config.Condition;
 import config.TableConfig;
 import operate.Search;
+import utils.WriteUtil;
 
 import java.io.IOException;
 
 public class dbsearch {
     public static void main(String[] args) {
+        if (TableConfig.ISDEBUG) {
+            WriteUtil.setFile ("search.txt");
+        }
+
         if (args.length != 2 && args.length != 3) {
             System.out.println("The parameter must have two(equality) or three(range)");
             return;
@@ -65,7 +70,6 @@ public class dbsearch {
             search = new Search (pageSize);
             search.search (condition);
             long stop = System.currentTimeMillis ();
-            //System.out.println("time is " + Search.time);
             System.out.println("The number of milliseconds to search the heap file is " + (stop - start) + "ms");
 
         } catch (Exception e) {
@@ -77,6 +81,9 @@ public class dbsearch {
                 } catch (IOException e) {
                     e.printStackTrace ();
                 }
+            }
+            if (TableConfig.ISDEBUG) {
+                WriteUtil.close ();
             }
         }
     }

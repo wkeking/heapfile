@@ -13,7 +13,6 @@ import java.text.ParseException;
 import java.util.Map;
 
 public class Write {
-    private static int i = 1;
     private int pageSize;
     private String dataFilePath;
     private long recordsNum;//记录总条数

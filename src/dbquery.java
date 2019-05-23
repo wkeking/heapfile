@@ -3,6 +3,7 @@ import config.TableConfig;
 import element.pages.Page;
 import element.records.Record;
 import operate.Load;
+import utils.WriteUtil;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -10,6 +11,10 @@ import java.util.List;
 
 public class dbquery {
     public static void main(String[] args) {
+        if (TableConfig.ISDEBUG) {
+            WriteUtil.setFile ("query.txt");
+        }
+
         if (args.length != 2 && args.length != 3) {
             System.out.println("The parameter must have two(equality) or three(range)");
             return;
@@ -77,6 +82,10 @@ public class dbquery {
                     recordList.forEach (r -> {
                         System.out.println("Page ID:" + r.getPageId () + ",Record ID:" + r.getRecordId ());
                         System.out.println ("Record Value:" + r.toString ());
+                        if (TableConfig.ISDEBUG) {
+                            WriteUtil.write ("Page ID:" + r.getPageId () + ",Record ID:" + r.getRecordId ());
+                            WriteUtil.write ("Record Value:" + r.toString ());
+                        }
                     });
                 }
             }
@@ -94,6 +103,9 @@ public class dbquery {
                 } catch (IOException e) {
                     e.printStackTrace ();
                 }
+            }
+            if (TableConfig.ISDEBUG) {
+                WriteUtil.close ();
             }
         }
     }
